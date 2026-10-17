@@ -1,0 +1,2043 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#fafaf9" />
+    <title>Marketing Library</title>
+    <script>
+      // If anything fails to load, show it on the page instead of a blank screen.
+      window.addEventListener('error', function (e) {
+        var msg = e.message || ('Could not load ' + ((e.target && (e.target.src || e.target.href)) || 'a resource'));
+        var box = document.getElementById('boot-error');
+        if (!box) {
+          box = document.createElement('pre');
+          box.id = 'boot-error';
+          box.style.cssText = 'margin:16px;padding:12px;background:#fff1f2;color:#9f1239;font:12px/1.5 monospace;white-space:pre-wrap;border-radius:8px';
+          (document.body || document.documentElement).appendChild(box);
+        }
+        box.textContent += msg + '\n';
+      }, true);
+    </script>
+    <link rel="preconnect" href="https://unpkg.com" crossorigin />
+    <link rel="dns-prefetch" href="https://covers.openlibrary.org" />
+    <!-- Pre-built Tailwind CSS (regenerate with dev/build-css.html when adding new classes). -->
+    <style id="tw">*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif,system-ui,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}*,::before,::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x:;--tw-pan-y:;--tw-pinch-zoom:;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position:;--tw-gradient-via-position:;--tw-gradient-to-position:;--tw-ordinal:;--tw-slashed-zero:;--tw-numeric-figure:;--tw-numeric-spacing:;--tw-numeric-fraction:;--tw-ring-inset:;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur:;--tw-brightness:;--tw-contrast:;--tw-grayscale:;--tw-hue-rotate:;--tw-invert:;--tw-saturate:;--tw-sepia:;--tw-drop-shadow:;--tw-backdrop-blur:;--tw-backdrop-brightness:;--tw-backdrop-contrast:;--tw-backdrop-grayscale:;--tw-backdrop-hue-rotate:;--tw-backdrop-invert:;--tw-backdrop-opacity:;--tw-backdrop-saturate:;--tw-backdrop-sepia:;--tw-contain-size:;--tw-contain-layout:;--tw-contain-paint:;--tw-contain-style:}::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x:;--tw-pan-y:;--tw-pinch-zoom:;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position:;--tw-gradient-via-position:;--tw-gradient-to-position:;--tw-ordinal:;--tw-slashed-zero:;--tw-numeric-figure:;--tw-numeric-spacing:;--tw-numeric-fraction:;--tw-ring-inset:;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur:;--tw-brightness:;--tw-contrast:;--tw-grayscale:;--tw-hue-rotate:;--tw-invert:;--tw-saturate:;--tw-sepia:;--tw-drop-shadow:;--tw-backdrop-blur:;--tw-backdrop-brightness:;--tw-backdrop-contrast:;--tw-backdrop-grayscale:;--tw-backdrop-hue-rotate:;--tw-backdrop-invert:;--tw-backdrop-opacity:;--tw-backdrop-saturate:;--tw-backdrop-sepia:;--tw-contain-size:;--tw-contain-layout:;--tw-contain-paint:;--tw-contain-style:}.pointer-events-none{pointer-events:none}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.inset-0{inset:0px}.inset-x-0{left:0px;right:0px}.inset-x-5{left:1.25rem;right:1.25rem}.bottom-0{bottom:0px}.bottom-20{bottom:5rem}.left-0{left:0px}.left-1\/2{left:50%}.left-2{left:0.5rem}.left-3{left:0.75rem}.right-0{right:0px}.right-2{right:0.5rem}.right-3{right:0.75rem}.top-0{top:0px}.top-1\.5{top:0.375rem}.top-1\/2{top:50%}.top-2{top:0.5rem}.top-3{top:0.75rem}.z-20{z-index:20}.z-30{z-index:30}.z-40{z-index:40}.z-50{z-index:50}.z-\[60\]{z-index:60}.-mx-4{margin-left:-1rem;margin-right:-1rem}.-my-1{margin-top:-0.25rem;margin-bottom:-0.25rem}.mx-auto{margin-left:auto;margin-right:auto}.my-3{margin-top:0.75rem;margin-bottom:0.75rem}.-mr-1\.5{margin-right:-0.375rem}.-mt-1{margin-top:-0.25rem}.-mt-2{margin-top:-0.5rem}.-mt-3{margin-top:-0.75rem}.mb-0\.5{margin-bottom:0.125rem}.mb-1{margin-bottom:0.25rem}.mb-1\.5{margin-bottom:0.375rem}.mb-2{margin-bottom:0.5rem}.mb-3{margin-bottom:0.75rem}.mb-4{margin-bottom:1rem}.ml-0\.5{margin-left:0.125rem}.ml-1\.5{margin-left:0.375rem}.mr-1{margin-right:0.25rem}.mt-0\.5{margin-top:0.125rem}.mt-1{margin-top:0.25rem}.mt-1\.5{margin-top:0.375rem}.mt-2{margin-top:0.5rem}.mt-3{margin-top:0.75rem}.mt-4{margin-top:1rem}.mt-auto{margin-top:auto}.line-clamp-2{overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2}.block{display:block}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.aspect-\[2\/3\]{aspect-ratio:2/3}.h-0\.5{height:0.125rem}.h-1\.5{height:0.375rem}.h-10{height:2.5rem}.h-11{height:2.75rem}.h-14{height:3.5rem}.h-2{height:0.5rem}.h-20{height:5rem}.h-24{height:6rem}.h-44{height:11rem}.h-6{height:1.5rem}.h-64{height:16rem}.h-7{height:1.75rem}.h-8{height:2rem}.h-9{height:2.25rem}.h-\[18px\]{height:18px}.h-full{height:100%}.h-px{height:1px}.max-h-56{max-height:14rem}.max-h-96{max-height:24rem}.max-h-\[90dvh\]{max-height:90dvh}.max-h-\[90vh\]{max-height:90vh}.min-h-screen{min-height:100vh}.w-1\.5{width:0.375rem}.w-10{width:2.5rem}.w-12{width:3rem}.w-14{width:3.5rem}.w-16{width:4rem}.w-20{width:5rem}.w-28{width:7rem}.w-32{width:8rem}.w-44{width:11rem}.w-5{width:1.25rem}.w-6{width:1.5rem}.w-7{width:1.75rem}.w-8{width:2rem}.w-\[132px\]{width:132px}.w-full{width:100%}.w-max{width:max-content}.min-w-0{min-width:0px}.min-w-\[120px\]{min-width:120px}.min-w-\[18px\]{min-width:18px}.max-w-\[480px\]{max-width:480px}.max-w-\[92vw\]{max-width:92vw}.max-w-sm{max-width:24rem}.flex-1{flex:1 1 0%}.shrink-0{flex-shrink:0}.-translate-x-1\/2{--tw-translate-x:-50%;transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.-translate-y-1\/2{--tw-translate-y:-50%;transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}@keyframes bounce{0%,100%{transform:translateY(-25%);animation-timing-function:cubic-bezier(0.8,0,1,1)}50%{transform:none;animation-timing-function:cubic-bezier(0,0,0.2,1)}}.animate-bounce{animation:bounce 1s infinite}@keyframes pulse{50%{opacity:.5}}.animate-pulse{animation:pulse 2s cubic-bezier(0.4,0,0.6,1) infinite}@keyframes spin{to{transform:rotate(360deg)}}.animate-spin{animation:spin 1s linear infinite}.select-all{-webkit-user-select:all;user-select:all}.scroll-px-4{scroll-padding-left:1rem;scroll-padding-right:1rem}.appearance-none{-webkit-appearance:none;appearance:none}.grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.grid-cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-start{align-items:flex-start}.items-end{align-items:flex-end}.items-center{align-items:center}.items-baseline{align-items:baseline}.justify-start{justify-content:flex-start}.justify-end{justify-content:flex-end}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-0\.5{gap:0.125rem}.gap-1{gap:0.25rem}.gap-1\.5{gap:0.375rem}.gap-2{gap:0.5rem}.gap-2\.5{gap:0.625rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.space-y-0\.5>:not([hidden]) ~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.125rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.125rem * var(--tw-space-y-reverse))}.space-y-1>:not([hidden]) ~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.25rem * var(--tw-space-y-reverse))}.space-y-1\.5>:not([hidden]) ~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.375rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.375rem * var(--tw-space-y-reverse))}.space-y-2>:not([hidden]) ~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.space-y-2\.5>:not([hidden]) ~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.625rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.625rem * var(--tw-space-y-reverse))}.space-y-3>:not([hidden]) ~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.75rem * var(--tw-space-y-reverse))}.space-y-4>:not([hidden]) ~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.space-y-5>:not([hidden]) ~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.25rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.25rem * var(--tw-space-y-reverse))}.space-y-6>:not([hidden]) ~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.5rem * var(--tw-space-y-reverse))}.divide-y>:not([hidden]) ~:not([hidden]){--tw-divide-y-reverse:0;border-top-width:calc(1px * calc(1 - var(--tw-divide-y-reverse)));border-bottom-width:calc(1px * var(--tw-divide-y-reverse))}.divide-stone-100>:not([hidden]) ~:not([hidden]){--tw-divide-opacity:1;border-color:rgb(245 245 244 / var(--tw-divide-opacity))}.overflow-hidden{overflow:hidden}.overflow-x-auto{overflow-x:auto}.overflow-y-auto{overflow-y:auto}.overflow-x-clip{overflow-x:clip}.truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.whitespace-nowrap{white-space:nowrap}.break-all{word-break:break-all}.rounded{border-radius:0.25rem}.rounded-2xl{border-radius:1rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-xl{border-radius:0.75rem}.rounded-t-2xl{border-top-left-radius:1rem;border-top-right-radius:1rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-b-2{border-bottom-width:2px}.border-t{border-top-width:1px}.border-dashed{border-style:dashed}.border-amber-200{--tw-border-opacity:1;border-color:rgb(253 230 138 / var(--tw-border-opacity))}.border-amber-300{--tw-border-opacity:1;border-color:rgb(252 211 77 / var(--tw-border-opacity))}.border-amber-600{--tw-border-opacity:1;border-color:rgb(217 119 6 / var(--tw-border-opacity))}.border-emerald-200{--tw-border-opacity:1;border-color:rgb(167 243 208 / var(--tw-border-opacity))}.border-fuchsia-200{--tw-border-opacity:1;border-color:rgb(245 208 254 / var(--tw-border-opacity))}.border-indigo-200{--tw-border-opacity:1;border-color:rgb(199 210 254 / var(--tw-border-opacity))}.border-orange-200{--tw-border-opacity:1;border-color:rgb(254 215 170 / var(--tw-border-opacity))}.border-rose-200{--tw-border-opacity:1;border-color:rgb(254 205 211 / var(--tw-border-opacity))}.border-sky-200{--tw-border-opacity:1;border-color:rgb(186 230 253 / var(--tw-border-opacity))}.border-slate-200{--tw-border-opacity:1;border-color:rgb(226 232 240 / var(--tw-border-opacity))}.border-stone-100{--tw-border-opacity:1;border-color:rgb(245 245 244 / var(--tw-border-opacity))}.border-stone-200{--tw-border-opacity:1;border-color:rgb(231 229 228 / var(--tw-border-opacity))}.border-stone-300{--tw-border-opacity:1;border-color:rgb(214 211 209 / var(--tw-border-opacity))}.border-stone-900{--tw-border-opacity:1;border-color:rgb(28 25 23 / var(--tw-border-opacity))}.border-teal-200{--tw-border-opacity:1;border-color:rgb(153 246 228 / var(--tw-border-opacity))}.border-transparent{border-color:transparent}.border-violet-200{--tw-border-opacity:1;border-color:rgb(221 214 254 / var(--tw-border-opacity))}.bg-amber-100{--tw-bg-opacity:1;background-color:rgb(254 243 199 / var(--tw-bg-opacity))}.bg-amber-50{--tw-bg-opacity:1;background-color:rgb(255 251 235 / var(--tw-bg-opacity))}.bg-amber-500{--tw-bg-opacity:1;background-color:rgb(245 158 11 / var(--tw-bg-opacity))}.bg-amber-600{--tw-bg-opacity:1;background-color:rgb(217 119 6 / var(--tw-bg-opacity))}.bg-black\/40{background-color:rgb(0 0 0 / 0.4)}.bg-emerald-100{--tw-bg-opacity:1;background-color:rgb(209 250 229 / var(--tw-bg-opacity))}.bg-emerald-50{--tw-bg-opacity:1;background-color:rgb(236 253 245 / var(--tw-bg-opacity))}.bg-emerald-500{--tw-bg-opacity:1;background-color:rgb(16 185 129 / var(--tw-bg-opacity))}.bg-emerald-600{--tw-bg-opacity:1;background-color:rgb(5 150 105 / var(--tw-bg-opacity))}.bg-fuchsia-100{--tw-bg-opacity:1;background-color:rgb(250 232 255 / var(--tw-bg-opacity))}.bg-fuchsia-50{--tw-bg-opacity:1;background-color:rgb(253 244 255 / var(--tw-bg-opacity))}.bg-fuchsia-500{--tw-bg-opacity:1;background-color:rgb(217 70 239 / var(--tw-bg-opacity))}.bg-fuchsia-600{--tw-bg-opacity:1;background-color:rgb(192 38 211 / var(--tw-bg-opacity))}.bg-indigo-100{--tw-bg-opacity:1;background-color:rgb(224 231 255 / var(--tw-bg-opacity))}.bg-indigo-50{--tw-bg-opacity:1;background-color:rgb(238 242 255 / var(--tw-bg-opacity))}.bg-indigo-500{--tw-bg-opacity:1;background-color:rgb(99 102 241 / var(--tw-bg-opacity))}.bg-indigo-600{--tw-bg-opacity:1;background-color:rgb(79 70 229 / var(--tw-bg-opacity))}.bg-orange-100{--tw-bg-opacity:1;background-color:rgb(255 237 213 / var(--tw-bg-opacity))}.bg-orange-50{--tw-bg-opacity:1;background-color:rgb(255 247 237 / var(--tw-bg-opacity))}.bg-orange-500{--tw-bg-opacity:1;background-color:rgb(249 115 22 / var(--tw-bg-opacity))}.bg-orange-600{--tw-bg-opacity:1;background-color:rgb(234 88 12 / var(--tw-bg-opacity))}.bg-rose-100{--tw-bg-opacity:1;background-color:rgb(255 228 230 / var(--tw-bg-opacity))}.bg-rose-50{--tw-bg-opacity:1;background-color:rgb(255 241 242 / var(--tw-bg-opacity))}.bg-rose-500{--tw-bg-opacity:1;background-color:rgb(244 63 94 / var(--tw-bg-opacity))}.bg-rose-600{--tw-bg-opacity:1;background-color:rgb(225 29 72 / var(--tw-bg-opacity))}.bg-sky-100{--tw-bg-opacity:1;background-color:rgb(224 242 254 / var(--tw-bg-opacity))}.bg-sky-50{--tw-bg-opacity:1;background-color:rgb(240 249 255 / var(--tw-bg-opacity))}.bg-sky-500{--tw-bg-opacity:1;background-color:rgb(14 165 233 / var(--tw-bg-opacity))}.bg-sky-600{--tw-bg-opacity:1;background-color:rgb(2 132 199 / var(--tw-bg-opacity))}.bg-slate-100{--tw-bg-opacity:1;background-color:rgb(241 245 249 / var(--tw-bg-opacity))}.bg-slate-50{--tw-bg-opacity:1;background-color:rgb(248 250 252 / var(--tw-bg-opacity))}.bg-slate-500{--tw-bg-opacity:1;background-color:rgb(100 116 139 / var(--tw-bg-opacity))}.bg-slate-600{--tw-bg-opacity:1;background-color:rgb(71 85 105 / var(--tw-bg-opacity))}.bg-stone-100{--tw-bg-opacity:1;background-color:rgb(245 245 244 / var(--tw-bg-opacity))}.bg-stone-200{--tw-bg-opacity:1;background-color:rgb(231 229 228 / var(--tw-bg-opacity))}.bg-stone-50{--tw-bg-opacity:1;background-color:rgb(250 250 249 / var(--tw-bg-opacity))}.bg-stone-500{--tw-bg-opacity:1;background-color:rgb(120 113 108 / var(--tw-bg-opacity))}.bg-stone-600{--tw-bg-opacity:1;background-color:rgb(87 83 78 / var(--tw-bg-opacity))}.bg-stone-900{--tw-bg-opacity:1;background-color:rgb(28 25 23 / var(--tw-bg-opacity))}.bg-teal-100{--tw-bg-opacity:1;background-color:rgb(204 251 241 / var(--tw-bg-opacity))}.bg-teal-50{--tw-bg-opacity:1;background-color:rgb(240 253 250 / var(--tw-bg-opacity))}.bg-teal-500{--tw-bg-opacity:1;background-color:rgb(20 184 166 / var(--tw-bg-opacity))}.bg-teal-600{--tw-bg-opacity:1;background-color:rgb(13 148 136 / var(--tw-bg-opacity))}.bg-violet-100{--tw-bg-opacity:1;background-color:rgb(237 233 254 / var(--tw-bg-opacity))}.bg-violet-50{--tw-bg-opacity:1;background-color:rgb(245 243 255 / var(--tw-bg-opacity))}.bg-violet-500{--tw-bg-opacity:1;background-color:rgb(139 92 246 / var(--tw-bg-opacity))}.bg-violet-600{--tw-bg-opacity:1;background-color:rgb(124 58 237 / var(--tw-bg-opacity))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity))}.bg-white\/15{background-color:rgb(255 255 255 / 0.15)}.bg-white\/70{background-color:rgb(255 255 255 / 0.7)}.bg-white\/90{background-color:rgb(255 255 255 / 0.9)}.bg-white\/95{background-color:rgb(255 255 255 / 0.95)}.bg-gradient-to-l{background-image:linear-gradient(to left,var(--tw-gradient-stops))}.bg-gradient-to-r{background-image:linear-gradient(to right,var(--tw-gradient-stops))}.from-amber-400{--tw-gradient-from:#fbbf24 var(--tw-gradient-from-position);--tw-gradient-to:rgb(251 191 36 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}.from-amber-500{--tw-gradient-from:#f59e0b var(--tw-gradient-from-position);--tw-gradient-to:rgb(245 158 11 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}.from-emerald-500{--tw-gradient-from:#10b981 var(--tw-gradient-from-position);--tw-gradient-to:rgb(16 185 129 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}.from-fuchsia-500{--tw-gradient-from:#d946ef var(--tw-gradient-from-position);--tw-gradient-to:rgb(217 70 239 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}.from-indigo-500{--tw-gradient-from:#6366f1 var(--tw-gradient-from-position);--tw-gradient-to:rgb(99 102 241 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}.from-orange-500{--tw-gradient-from:#f97316 var(--tw-gradient-from-position);--tw-gradient-to:rgb(249 115 22 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}.from-rose-400{--tw-gradient-from:#fb7185 var(--tw-gradient-from-position);--tw-gradient-to:rgb(251 113 133 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}.from-rose-500{--tw-gradient-from:#f43f5e var(--tw-gradient-from-position);--tw-gradient-to:rgb(244 63 94 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}.from-sky-500{--tw-gradient-from:#0ea5e9 var(--tw-gradient-from-position);--tw-gradient-to:rgb(14 165 233 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}.from-slate-500{--tw-gradient-from:#64748b var(--tw-gradient-from-position);--tw-gradient-to:rgb(100 116 139 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}.from-stone-50{--tw-gradient-from:#fafaf9 var(--tw-gradient-from-position);--tw-gradient-to:rgb(250 250 249 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}.from-stone-500{--tw-gradient-from:#78716c var(--tw-gradient-from-position);--tw-gradient-to:rgb(120 113 108 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}.from-stone-700{--tw-gradient-from:#44403c var(--tw-gradient-from-position);--tw-gradient-to:rgb(68 64 60 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}.from-teal-500{--tw-gradient-from:#14b8a6 var(--tw-gradient-from-position);--tw-gradient-to:rgb(20 184 166 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}.from-violet-500{--tw-gradient-from:#8b5cf6 var(--tw-gradient-from-position);--tw-gradient-to:rgb(139 92 246 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}.via-stone-50\/90{--tw-gradient-to:rgb(250 250 249 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from),rgb(250 250 249 / 0.9) var(--tw-gradient-via-position),var(--tw-gradient-to)}.to-amber-600{--tw-gradient-to:#d97706 var(--tw-gradient-to-position)}.to-emerald-600{--tw-gradient-to:#059669 var(--tw-gradient-to-position)}.to-fuchsia-600{--tw-gradient-to:#c026d3 var(--tw-gradient-to-position)}.to-indigo-600{--tw-gradient-to:#4f46e5 var(--tw-gradient-to-position)}.to-orange-500{--tw-gradient-to:#f97316 var(--tw-gradient-to-position)}.to-orange-600{--tw-gradient-to:#ea580c var(--tw-gradient-to-position)}.to-pink-500{--tw-gradient-to:#ec4899 var(--tw-gradient-to-position)}.to-rose-600{--tw-gradient-to:#e11d48 var(--tw-gradient-to-position)}.to-sky-600{--tw-gradient-to:#0284c7 var(--tw-gradient-to-position)}.to-slate-600{--tw-gradient-to:#475569 var(--tw-gradient-to-position)}.to-stone-600{--tw-gradient-to:#57534e var(--tw-gradient-to-position)}.to-stone-800{--tw-gradient-to:#292524 var(--tw-gradient-to-position)}.to-teal-600{--tw-gradient-to:#0d9488 var(--tw-gradient-to-position)}.to-transparent{--tw-gradient-to:transparent var(--tw-gradient-to-position)}.to-violet-600{--tw-gradient-to:#7c3aed var(--tw-gradient-to-position)}.object-cover{object-fit:cover}.p-0{padding:0px}.p-1{padding:0.25rem}.p-1\.5{padding:0.375rem}.p-2\.5{padding:0.625rem}.p-3{padding:0.75rem}.p-4{padding:1rem}.p-5{padding:1.25rem}.px-1{padding-left:0.25rem;padding-right:0.25rem}.px-1\.5{padding-left:0.375rem;padding-right:0.375rem}.px-2{padding-left:0.5rem;padding-right:0.5rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-3\.5{padding-left:0.875rem;padding-right:0.875rem}.px-4{padding-left:1rem;padding-right:1rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-0\.5{padding-top:0.125rem;padding-bottom:0.125rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-1\.5{padding-top:0.375rem;padding-bottom:0.375rem}.py-10{padding-top:2.5rem;padding-bottom:2.5rem}.py-16{padding-top:4rem;padding-bottom:4rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-2\.5{padding-top:0.625rem;padding-bottom:0.625rem}.py-20{padding-top:5rem;padding-bottom:5rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.py-6{padding-top:1.5rem;padding-bottom:1.5rem}.pb-28{padding-bottom:7rem}.pb-4{padding-bottom:1rem}.pb-5{padding-bottom:1.25rem}.pl-1{padding-left:0.25rem}.pl-2{padding-left:0.5rem}.pl-3{padding-left:0.75rem}.pl-5{padding-left:1.25rem}.pl-9{padding-left:2.25rem}.pl-\[52px\]{padding-left:52px}.pr-16{padding-right:4rem}.pr-2{padding-right:0.5rem}.pr-2\.5{padding-right:0.625rem}.pr-3{padding-right:0.75rem}.pr-5{padding-right:1.25rem}.pr-8{padding-right:2rem}.pr-9{padding-right:2.25rem}.pt-1{padding-top:0.25rem}.pt-3{padding-top:0.75rem}.pt-5{padding-top:1.25rem}.text-left{text-align:left}.text-center{text-align:center}.text-right{text-align:right}.font-mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-\[10\.5px\]{font-size:10.5px}.text-\[10px\]{font-size:10px}.text-\[11px\]{font-size:11px}.text-\[15px\]{font-size:15px}.text-\[17px\]{font-size:17px}.text-\[6px\]{font-size:6px}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-bold{font-weight:700}.font-medium{font-weight:500}.font-normal{font-weight:400}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.italic{font-style:italic}.leading-relaxed{line-height:1.625}.leading-snug{line-height:1.375}.leading-tight{line-height:1.25}.tracking-tight{letter-spacing:-0.025em}.tracking-wide{letter-spacing:0.025em}.text-amber-300{--tw-text-opacity:1;color:rgb(252 211 77 / var(--tw-text-opacity))}.text-amber-600{--tw-text-opacity:1;color:rgb(217 119 6 / var(--tw-text-opacity))}.text-amber-700{--tw-text-opacity:1;color:rgb(180 83 9 / var(--tw-text-opacity))}.text-amber-800{--tw-text-opacity:1;color:rgb(146 64 14 / var(--tw-text-opacity))}.text-amber-900{--tw-text-opacity:1;color:rgb(120 53 15 / var(--tw-text-opacity))}.text-emerald-500{--tw-text-opacity:1;color:rgb(16 185 129 / var(--tw-text-opacity))}.text-emerald-600{--tw-text-opacity:1;color:rgb(5 150 105 / var(--tw-text-opacity))}.text-emerald-700{--tw-text-opacity:1;color:rgb(4 120 87 / var(--tw-text-opacity))}.text-emerald-900{--tw-text-opacity:1;color:rgb(6 78 59 / var(--tw-text-opacity))}.text-fuchsia-600{--tw-text-opacity:1;color:rgb(192 38 211 / var(--tw-text-opacity))}.text-fuchsia-700{--tw-text-opacity:1;color:rgb(162 28 175 / var(--tw-text-opacity))}.text-fuchsia-900{--tw-text-opacity:1;color:rgb(112 26 117 / var(--tw-text-opacity))}.text-indigo-600{--tw-text-opacity:1;color:rgb(79 70 229 / var(--tw-text-opacity))}.text-indigo-700{--tw-text-opacity:1;color:rgb(67 56 202 / var(--tw-text-opacity))}.text-indigo-900{--tw-text-opacity:1;color:rgb(49 46 129 / var(--tw-text-opacity))}.text-orange-600{--tw-text-opacity:1;color:rgb(234 88 12 / var(--tw-text-opacity))}.text-orange-700{--tw-text-opacity:1;color:rgb(194 65 12 / var(--tw-text-opacity))}.text-orange-900{--tw-text-opacity:1;color:rgb(124 45 18 / var(--tw-text-opacity))}.text-rose-500{--tw-text-opacity:1;color:rgb(244 63 94 / var(--tw-text-opacity))}.text-rose-600{--tw-text-opacity:1;color:rgb(225 29 72 / var(--tw-text-opacity))}.text-rose-700{--tw-text-opacity:1;color:rgb(190 18 60 / var(--tw-text-opacity))}.text-rose-800{--tw-text-opacity:1;color:rgb(159 18 57 / var(--tw-text-opacity))}.text-rose-900{--tw-text-opacity:1;color:rgb(136 19 55 / var(--tw-text-opacity))}.text-sky-600{--tw-text-opacity:1;color:rgb(2 132 199 / var(--tw-text-opacity))}.text-sky-700{--tw-text-opacity:1;color:rgb(3 105 161 / var(--tw-text-opacity))}.text-sky-900{--tw-text-opacity:1;color:rgb(12 74 110 / var(--tw-text-opacity))}.text-slate-600{--tw-text-opacity:1;color:rgb(71 85 105 / var(--tw-text-opacity))}.text-slate-700{--tw-text-opacity:1;color:rgb(51 65 85 / var(--tw-text-opacity))}.text-slate-900{--tw-text-opacity:1;color:rgb(15 23 42 / var(--tw-text-opacity))}.text-stone-300{--tw-text-opacity:1;color:rgb(214 211 209 / var(--tw-text-opacity))}.text-stone-400{--tw-text-opacity:1;color:rgb(168 162 158 / var(--tw-text-opacity))}.text-stone-500{--tw-text-opacity:1;color:rgb(120 113 108 / var(--tw-text-opacity))}.text-stone-600{--tw-text-opacity:1;color:rgb(87 83 78 / var(--tw-text-opacity))}.text-stone-700{--tw-text-opacity:1;color:rgb(68 64 60 / var(--tw-text-opacity))}.text-stone-800{--tw-text-opacity:1;color:rgb(41 37 36 / var(--tw-text-opacity))}.text-stone-900{--tw-text-opacity:1;color:rgb(28 25 23 / var(--tw-text-opacity))}.text-teal-600{--tw-text-opacity:1;color:rgb(13 148 136 / var(--tw-text-opacity))}.text-teal-700{--tw-text-opacity:1;color:rgb(15 118 110 / var(--tw-text-opacity))}.text-teal-900{--tw-text-opacity:1;color:rgb(19 78 74 / var(--tw-text-opacity))}.text-violet-600{--tw-text-opacity:1;color:rgb(124 58 237 / var(--tw-text-opacity))}.text-violet-700{--tw-text-opacity:1;color:rgb(109 40 217 / var(--tw-text-opacity))}.text-violet-900{--tw-text-opacity:1;color:rgb(76 29 149 / var(--tw-text-opacity))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity))}.underline{-webkit-text-decoration-line:underline;text-decoration-line:underline}.opacity-30{opacity:0.3}.opacity-40{opacity:0.4}.shadow{--tw-shadow:0 1px 3px 0 rgb(0 0 0 / 0.1),0 1px 2px -1px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 1px 3px 0 var(--tw-shadow-color),0 1px 2px -1px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgb(0 0 0 / 0.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.shadow-\[0_0_0_1px_rgba\(0\2c 0\2c 0\2c 0\.04\)\2c 0_10px_40px_rgba\(0\2c 0\2c 0\2c 0\.06\)\]{--tw-shadow:0 0 0 1px rgba(0,0,0,0.04),0 10px 40px rgba(0,0,0,0.06);--tw-shadow-colored:0 0 0 1px var(--tw-shadow-color),0 10px 40px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1),0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color),0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.shadow-md{--tw-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1),0 2px 4px -2px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color),0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.shadow-sm{--tw-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.backdrop-blur{--tw-backdrop-blur:blur(8px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition-colors{transition-property:color,background-color,border-color,fill,stroke,-webkit-text-decoration-color;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,-webkit-text-decoration-color;transition-timing-function:cubic-bezier(0.4,0,0.2,1);transition-duration:150ms}.transition-shadow{transition-property:box-shadow;transition-timing-function:cubic-bezier(0.4,0,0.2,1);transition-duration:150ms}.transition-transform{transition-property:transform;transition-timing-function:cubic-bezier(0.4,0,0.2,1);transition-duration:150ms}.hover\:border-stone-400:hover{--tw-border-opacity:1;border-color:rgb(168 162 158 / var(--tw-border-opacity))}.hover\:bg-amber-50:hover{--tw-bg-opacity:1;background-color:rgb(255 251 235 / var(--tw-bg-opacity))}.hover\:bg-amber-700:hover{--tw-bg-opacity:1;background-color:rgb(180 83 9 / var(--tw-bg-opacity))}.hover\:bg-emerald-50:hover{--tw-bg-opacity:1;background-color:rgb(236 253 245 / var(--tw-bg-opacity))}.hover\:bg-emerald-700:hover{--tw-bg-opacity:1;background-color:rgb(4 120 87 / var(--tw-bg-opacity))}.hover\:bg-rose-50:hover{--tw-bg-opacity:1;background-color:rgb(255 241 242 / var(--tw-bg-opacity))}.hover\:bg-rose-700:hover{--tw-bg-opacity:1;background-color:rgb(190 18 60 / var(--tw-bg-opacity))}.hover\:bg-stone-100:hover{--tw-bg-opacity:1;background-color:rgb(245 245 244 / var(--tw-bg-opacity))}.hover\:bg-stone-200:hover{--tw-bg-opacity:1;background-color:rgb(231 229 228 / var(--tw-bg-opacity))}.hover\:bg-stone-50:hover{--tw-bg-opacity:1;background-color:rgb(250 250 249 / var(--tw-bg-opacity))}.hover\:bg-stone-800:hover{--tw-bg-opacity:1;background-color:rgb(41 37 36 / var(--tw-bg-opacity))}.hover\:bg-white:hover{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity))}.hover\:bg-white\/25:hover{background-color:rgb(255 255 255 / 0.25)}.hover\:text-amber-800:hover{--tw-text-opacity:1;color:rgb(146 64 14 / var(--tw-text-opacity))}.hover\:text-rose-600:hover{--tw-text-opacity:1;color:rgb(225 29 72 / var(--tw-text-opacity))}.hover\:text-rose-700:hover{--tw-text-opacity:1;color:rgb(190 18 60 / var(--tw-text-opacity))}.hover\:text-stone-600:hover{--tw-text-opacity:1;color:rgb(87 83 78 / var(--tw-text-opacity))}.hover\:text-stone-700:hover{--tw-text-opacity:1;color:rgb(68 64 60 / var(--tw-text-opacity))}.hover\:text-stone-800:hover{--tw-text-opacity:1;color:rgb(41 37 36 / var(--tw-text-opacity))}.hover\:shadow-md:hover{--tw-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1),0 2px 4px -2px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color),0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.focus\:ring-2:focus{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow,0 0 #0000)}.focus\:ring-amber-400:focus{--tw-ring-opacity:1;--tw-ring-color:rgb(251 191 36 / var(--tw-ring-opacity))}.focus\:ring-amber-500:focus{--tw-ring-opacity:1;--tw-ring-color:rgb(245 158 11 / var(--tw-ring-opacity))}.disabled\:cursor-not-allowed:disabled{cursor:not-allowed}.disabled\:bg-stone-50:disabled{--tw-bg-opacity:1;background-color:rgb(250 250 249 / var(--tw-bg-opacity))}.disabled\:text-stone-400:disabled{--tw-text-opacity:1;color:rgb(168 162 158 / var(--tw-text-opacity))}.disabled\:opacity-40:disabled{opacity:0.4}.disabled\:opacity-50:disabled{opacity:0.5}.disabled\:opacity-60:disabled{opacity:0.6}.group:hover .group-hover\:scale-\[1\.03\]{--tw-scale-x:1.03;--tw-scale-y:1.03;transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}</style>
+    <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/htm@3.1.1/dist/htm.umd.js"></script>
+    <script>
+      // The 35 Lucide icons the portal uses (instead of the full 355 KB icon library).
+      window.ICONS = {"Archive":[["rect",{"width":"20","height":"5","x":"2","y":"3","rx":"1"}],["path",{"d":"M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8"}],["path",{"d":"M10 12h4"}]],"Bell":[["path",{"d":"M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"}],["path",{"d":"M10.3 21a1.94 1.94 0 0 0 3.4 0"}]],"BookOpen":[["path",{"d":"M12 7v14"}],["path",{"d":"M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"}]],"ChartColumn":[["path",{"d":"M3 3v16a2 2 0 0 0 2 2h16"}],["path",{"d":"M18 17V9"}],["path",{"d":"M13 17V5"}],["path",{"d":"M8 17v-3"}]],"Check":[["path",{"d":"M20 6 9 17l-5-5"}]],"ChevronDown":[["path",{"d":"m6 9 6 6 6-6"}]],"ChevronLeft":[["path",{"d":"m15 18-6-6 6-6"}]],"ChevronRight":[["path",{"d":"m9 18 6-6-6-6"}]],"CircleAlert":[["circle",{"cx":"12","cy":"12","r":"10"}],["line",{"x1":"12","x2":"12","y1":"8","y2":"12"}],["line",{"x1":"12","x2":"12.01","y1":"16","y2":"16"}]],"Download":[["path",{"d":"M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"}],["polyline",{"points":"7 10 12 15 17 10"}],["line",{"x1":"12","x2":"12","y1":"15","y2":"3"}]],"History":[["path",{"d":"M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"}],["path",{"d":"M3 3v5h5"}],["path",{"d":"M12 7v5l4 2"}]],"Hourglass":[["path",{"d":"M5 22h14"}],["path",{"d":"M5 2h14"}],["path",{"d":"M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22"}],["path",{"d":"M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2"}]],"ListOrdered":[["path",{"d":"M10 12h11"}],["path",{"d":"M10 18h11"}],["path",{"d":"M10 6h11"}],["path",{"d":"M4 10h2"}],["path",{"d":"M4 6h1v4"}],["path",{"d":"M6 18H4c0-1 2-2 2-3s-1-1.5-2-1"}]],"MessageCircle":[["path",{"d":"M7.9 20A9 9 0 1 0 4 16.1L2 22Z"}]],"Pencil":[["path",{"d":"M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"}],["path",{"d":"m15 5 4 4"}]],"Plus":[["path",{"d":"M5 12h14"}],["path",{"d":"M12 5v14"}]],"RefreshCw":[["path",{"d":"M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"}],["path",{"d":"M21 3v5h-5"}],["path",{"d":"M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"}],["path",{"d":"M8 16H3v5"}]],"Search":[["circle",{"cx":"11","cy":"11","r":"8"}],["path",{"d":"m21 21-4.3-4.3"}]],"Settings":[["path",{"d":"M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"}],["circle",{"cx":"12","cy":"12","r":"3"}]],"Share2":[["circle",{"cx":"18","cy":"5","r":"3"}],["circle",{"cx":"6","cy":"12","r":"3"}],["circle",{"cx":"18","cy":"19","r":"3"}],["line",{"x1":"8.59","x2":"15.42","y1":"13.51","y2":"17.49"}],["line",{"x1":"15.41","x2":"8.59","y1":"6.51","y2":"10.49"}]],"Trash2":[["path",{"d":"M3 6h18"}],["path",{"d":"M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"}],["path",{"d":"M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"}],["line",{"x1":"10","x2":"10","y1":"11","y2":"17"}],["line",{"x1":"14","x2":"14","y1":"11","y2":"17"}]],"Undo2":[["path",{"d":"M9 14 4 9l5-5"}],["path",{"d":"M4 9h10.5a5.5 5.5 0 0 1 5.5 5.5a5.5 5.5 0 0 1-5.5 5.5H11"}]],"Wifi":[["path",{"d":"M12 20h.01"}],["path",{"d":"M2 8.82a15 15 0 0 1 20 0"}],["path",{"d":"M5 12.859a10 10 0 0 1 14 0"}],["path",{"d":"M8.5 16.429a5 5 0 0 1 7 0"}]],"WifiOff":[["path",{"d":"M12 20h.01"}],["path",{"d":"M8.5 16.429a5 5 0 0 1 7 0"}],["path",{"d":"M5 12.859a10 10 0 0 1 5.17-2.69"}],["path",{"d":"M19 12.859a10 10 0 0 0-2.007-1.523"}],["path",{"d":"M2 8.82a15 15 0 0 1 4.177-2.643"}],["path",{"d":"M22 8.82a15 15 0 0 0-11.288-3.764"}],["path",{"d":"m2 2 20 20"}]],"X":[["path",{"d":"M18 6 6 18"}],["path",{"d":"m6 6 12 12"}]],"Laptop":[["path",{"d":"M20 16V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v9m16 0H4m16 0 1.28 2.55a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45L4 16"}]],"CalendarPlus":[["path",{"d":"M8 2v4"}],["path",{"d":"M16 2v4"}],["path",{"d":"M21 13V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h8"}],["path",{"d":"M3 10h18"}],["path",{"d":"M16 19h6"}],["path",{"d":"M19 16v6"}]],"Clock":[["circle",{"cx":"12","cy":"12","r":"10"}],["polyline",{"points":"12 6 12 12 16 14"}]],"Moon":[["path",{"d":"M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"}]],"Sun":[["circle",{"cx":"12","cy":"12","r":"4"}],["path",{"d":"M12 2v2"}],["path",{"d":"M12 20v2"}],["path",{"d":"m4.93 4.93 1.41 1.41"}],["path",{"d":"m17.66 17.66 1.41 1.41"}],["path",{"d":"M2 12h2"}],["path",{"d":"M20 12h2"}],["path",{"d":"m6.34 17.66-1.41 1.41"}],["path",{"d":"m19.07 4.93-1.41 1.41"}]],"Lock":[["rect",{"width":"18","height":"11","x":"3","y":"11","rx":"2","ry":"2"}],["path",{"d":"M7 11V7a5 5 0 0 1 10 0v4"}]],"LogOut":[["path",{"d":"M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"}],["path",{"d":"m16 17 5-5-5-5"}],["path",{"d":"M21 12H9"}]],"ShieldCheck":[["path",{"d":"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"}],["path",{"d":"m9 12 2 2 4-4"}]],"Wrench":[["path",{"d":"M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"}]],"ExternalLink":[["path",{"d":"M15 3h6v6"}],["path",{"d":"M10 14 21 3"}],["path",{"d":"M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"}]]};
+    </script>
+    <script>window.API_URL = 'https://script.google.com/macros/s/AKfycbyCCjpuHxPCA-6rPmEOeNKi6rUXkfkdQHDz9fnOFisDquN_Ay8b_pmFJBoFY98suh4/exec';</script>
+    <script>
+      // Outside Apps Script (local preview) load the shared rules + a mock server.
+      window.IS_GAS = !!(window.google && google.script && google.script.run) || /googleusercontent\.com$/.test(location.hostname);
+      // window.API_URL is set only in the GitHub Pages build (dev/build_pages.py).
+      if (!window.IS_GAS && !window.API_URL) {
+        document.write('<script src="Logic.gs"><\/script>');
+        document.write('<script src="../dev/seed.js"><\/script>');
+        document.write('<script src="../dev/mock-server.js"><\/script>');
+      }
+    </script>
+    <style>
+      html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+      body { -webkit-tap-highlight-color: transparent; overscroll-behavior-y: none; background: #e7e5e4; }
+      /* iOS Safari zooms into any field under 16px; keep fields at 16px on phones. */
+      input, select, textarea { font-size: 16px !important; }
+      input[type='date'] { -webkit-appearance: none; appearance: none; min-height: 44px; }
+      button { touch-action: manipulation; }
+      .pb-safe { padding-bottom: max(env(safe-area-inset-bottom), 0px); }
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { scrollbar-width: none; }
+      .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+      .cover-serif { font-family: Georgia, 'Times New Roman', serif; }
+    </style>
+    <!-- Dark mode: hand-written overrides of the light palette, switched by the moon icon. -->
+    <style id="dark">html.dark{color-scheme:dark}html.dark body{background:#000}.dark .bg-stone-50{background-color:#0f0e0d}.dark .bg-white{background-color:#1c1a18}.dark .bg-white\/95{background-color:rgba(28,26,24,.95)}.dark .bg-stone-100,.dark .hover\:bg-stone-50:hover,.dark .hover\:bg-stone-100:hover,.dark .hover\:bg-white:hover{background-color:#2a2725}.dark .bg-stone-900{background-color:#3a3633}.dark .hover\:bg-stone-800:hover{background-color:#4a4542}.dark .border-stone-900{border-color:#3a3633}.dark .text-stone-900,.dark .text-stone-800{color:#f5f5f4}.dark .text-stone-700{color:#e7e5e4}.dark .text-stone-600{color:#d6d3d1}.dark .text-stone-500{color:#a8a29e}.dark .text-stone-400{color:#8a837e}.dark .text-stone-300{color:#57534e}.dark .border-stone-100,.dark .border-stone-200,.dark .divide-stone-100>*+*{border-color:#2e2a27}.dark .border-stone-300,.dark .hover\:border-stone-400:hover{border-color:#44403c}.dark input,.dark select,.dark textarea{color:#f5f5f4;color-scheme:dark}.dark .shadow-sm,.dark .shadow-lg,.dark .shadow-2xl{box-shadow:none}.dark .bg-indigo-50,.dark .hover\:bg-indigo-50:hover{background-color:rgba(255,255,255,.06)}.dark .bg-indigo-100,.dark .hover\:bg-indigo-100:hover{background-color:#312e81}.dark .text-indigo-700,.dark .text-indigo-800,.dark .text-indigo-900{color:#ece8e4}.dark .border-indigo-200,.dark .border-indigo-300{border-color:#4a3f36}.dark .bg-rose-50,.dark .hover\:bg-rose-50:hover{background-color:rgba(255,255,255,.06)}.dark .bg-rose-100,.dark .hover\:bg-rose-100:hover{background-color:#881337}.dark .text-rose-700,.dark .text-rose-800,.dark .text-rose-900{color:#ece8e4}.dark .border-rose-200,.dark .border-rose-300{border-color:#4a3f36}.dark .bg-amber-50,.dark .hover\:bg-amber-50:hover{background-color:rgba(255,255,255,.06)}.dark .bg-amber-100,.dark .hover\:bg-amber-100:hover{background-color:#78350f}.dark .text-amber-700,.dark .text-amber-800,.dark .text-amber-900{color:#ece8e4}.dark .border-amber-200,.dark .border-amber-300{border-color:#4a3f36}.dark .bg-emerald-50,.dark .hover\:bg-emerald-50:hover{background-color:rgba(255,255,255,.06)}.dark .bg-emerald-100,.dark .hover\:bg-emerald-100:hover{background-color:#064e3b}.dark .text-emerald-700,.dark .text-emerald-800,.dark .text-emerald-900{color:#ece8e4}.dark .border-emerald-200,.dark .border-emerald-300{border-color:#4a3f36}.dark .bg-violet-50,.dark .hover\:bg-violet-50:hover{background-color:rgba(255,255,255,.06)}.dark .bg-violet-100,.dark .hover\:bg-violet-100:hover{background-color:#4c1d95}.dark .text-violet-700,.dark .text-violet-800,.dark .text-violet-900{color:#ece8e4}.dark .border-violet-200,.dark .border-violet-300{border-color:#4a3f36}.dark .bg-sky-50,.dark .hover\:bg-sky-50:hover{background-color:rgba(255,255,255,.06)}.dark .bg-sky-100,.dark .hover\:bg-sky-100:hover{background-color:#0c4a6e}.dark .text-sky-700,.dark .text-sky-800,.dark .text-sky-900{color:#ece8e4}.dark .border-sky-200,.dark .border-sky-300{border-color:#4a3f36}.dark .bg-teal-50,.dark .hover\:bg-teal-50:hover{background-color:rgba(255,255,255,.06)}.dark .bg-teal-100,.dark .hover\:bg-teal-100:hover{background-color:#134e4a}.dark .text-teal-700,.dark .text-teal-800,.dark .text-teal-900{color:#ece8e4}.dark .border-teal-200,.dark .border-teal-300{border-color:#4a3f36}.dark .bg-orange-50,.dark .hover\:bg-orange-50:hover{background-color:rgba(255,255,255,.06)}.dark .bg-orange-100,.dark .hover\:bg-orange-100:hover{background-color:#7c2d12}.dark .text-orange-700,.dark .text-orange-800,.dark .text-orange-900{color:#ece8e4}.dark .border-orange-200,.dark .border-orange-300{border-color:#4a3f36}.dark .bg-fuchsia-50,.dark .hover\:bg-fuchsia-50:hover{background-color:rgba(255,255,255,.06)}.dark .bg-fuchsia-100,.dark .hover\:bg-fuchsia-100:hover{background-color:#701a75}.dark .text-fuchsia-700,.dark .text-fuchsia-800,.dark .text-fuchsia-900{color:#ece8e4}.dark .border-fuchsia-200,.dark .border-fuchsia-300{border-color:#4a3f36}.dark .bg-slate-50,.dark .hover\:bg-slate-50:hover{background-color:rgba(255,255,255,.06)}.dark .bg-slate-100,.dark .hover\:bg-slate-100:hover{background-color:#1e293b}.dark .text-slate-700,.dark .text-slate-800,.dark .text-slate-900{color:#ece8e4}.dark .border-slate-200,.dark .border-slate-300{border-color:#4a3f36}.dark .text-amber-700,.dark .text-amber-800{color:#fbbf24}.dark .text-rose-600,.dark .text-rose-700{color:#fb7185}.dark .text-emerald-600,.dark .text-emerald-700{color:#34d399}.dark .bg-stone-200{background-color:#3a3633}.dark .bg-white\/90{background-color:rgba(28,26,24,.92)}.dark .bg-white\/70{background-color:rgba(28,26,24,.7)}.dark .rounded-full.bg-emerald-100,.dark .rounded-full.bg-amber-100,.dark .rounded-full.bg-rose-100,.dark .rounded-full.bg-stone-100{box-shadow:0 0 0 1px rgba(0,0,0,.35),0 1px 3px rgba(0,0,0,.5)}.dark .bg-gradient-to-l.from-stone-50{background-image:linear-gradient(to left,#0f0e0d,rgba(15,14,13,.9),transparent)}.dark .bg-gradient-to-r.from-stone-50{background-image:linear-gradient(to right,#0f0e0d,rgba(15,14,13,.9),transparent)}.rounded-full.bg-orange-600.text-white{background-color:#c2410c}.dark .text-emerald-700{color:#6ee7b7}.dark .text-amber-700{color:#fcd34d}.dark .text-rose-700{color:#fda4af}</style>
+    <script>
+      // Apply the saved theme (or the phone's setting) before anything paints.
+      (function () {
+        var t = null;
+        try { t = localStorage.getItem('mll_theme'); } catch (e) {}
+        if (!t) t = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        if (t === 'dark') document.documentElement.classList.add('dark');
+      })();
+    </script>
+  </head>
+  <body>
+    <script type="application/json" id="initial-state"></script>
+    <div id="root">
+      <div class="min-h-screen bg-stone-50 max-w-[480px] mx-auto">
+        <div class="bg-white px-4 py-3"><div class="text-[17px] font-semibold text-stone-900">📚 Marketing Library</div><div class="text-xs text-stone-400 mt-0.5">Loading…</div></div>
+        <div class="px-4 py-6 space-y-4 animate-pulse">
+          <div class="grid grid-cols-3 gap-3"><div class="h-20 rounded-xl bg-white border border-stone-200"></div><div class="h-20 rounded-xl bg-white border border-stone-200"></div><div class="h-20 rounded-xl bg-white border border-stone-200"></div></div>
+          <div class="h-44 rounded-2xl bg-white border border-stone-200"></div>
+          <div class="h-44 rounded-2xl bg-white border border-stone-200"></div>
+        </div>
+      </div>
+    </div>
+    <script>
+(function () {
+'use strict';
+const { useState, useEffect, useMemo, useCallback, useRef } = React;
+const html = htm.bind(React.createElement);
+// Recharts (~500 KB) is only needed on Stats, so it loads on demand.
+let BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell, LineChart, Line, CartesianGrid;
+const loadScript = (src) => new Promise((resolve, reject) => {
+  const el = document.createElement('script');
+  el.src = src; el.onload = resolve; el.onerror = () => reject(new Error('Could not load charts'));
+  document.head.appendChild(el);
+});
+let chartsPromise = null;
+const loadCharts = () => {
+  if (!chartsPromise) {
+    chartsPromise = (window.PropTypes ? Promise.resolve() : loadScript('https:\/\/unpkg.com/prop-types@15.8.1/prop-types.min.js'))
+      .then(() => (window.Recharts ? null : loadScript('https:\/\/unpkg.com/recharts@2.12.7/umd/Recharts.js')))
+      .then(() => {
+        ({ BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell, LineChart, Line, CartesianGrid } = window.Recharts);
+      })
+      .catch((e) => { chartsPromise = null; throw e; });
+  }
+  return chartsPromise;
+};
+// Data embedded in the page by Apps Script, so the first screen needs no extra request.
+const BOOT = (() => {
+  try {
+    const t = (document.getElementById('initial-state') || {}).textContent || '';
+    return t.trim().charAt(0) === '{' ? JSON.parse(t) : null;
+  } catch (e) { return null; }
+})();
+
+const APP = 'Marketing Library';
+const POLL_INTERVAL = 10000;
+// Short link that redirects to this portal (used for Share and reminders).
+const SHORT_URL = 'https:\/\/tinyurl.com/mktg-library';
+// The original CodeSandbox tracker's data feed, used once for the switch-over.
+const OLD_TRACKER_URL =
+  'https:\/\/script.google.com/macros/s/AKfycbw9AlxHoCd1DApuYYkRJODWV9erxv-Q8yVxskTZBEs4l8gbheOCTdsUB-BlZJ5GR6Bo/exec';
+
+// ─── Server bridge ────────────────────────────────────────────────────────────
+const call = (fn, ...args) =>
+  new Promise((resolve, reject) => {
+    if (window.API_URL) {
+      // GitHub Pages build: same server functions, called over HTTPS.
+      fetch(window.API_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ fn, args }) })
+        .then((r) => { if (!r.ok) throw new Error('Server error ' + r.status); return r.json(); })
+        .then((o) => (o.ok ? resolve(o.result) : reject(new Error(cleanErr(o.error)))), (e) => reject(new Error(cleanErr(e))));
+    } else if (window.IS_GAS) {
+      google.script.run
+        .withSuccessHandler(resolve)
+        .withFailureHandler((e) => reject(new Error(cleanErr(e))))
+        [fn](...args);
+    } else {
+      window.MockServer[fn](...args).then(resolve, (e) => reject(new Error(cleanErr(e))));
+    }
+  });
+// Admin password for this tab (checked again by the server on every admin action).
+const ADMIN_KEY = {
+  get() { try { return sessionStorage.getItem('mll_admin') || ''; } catch (e) { return ''; } },
+  set(v) { try { v ? sessionStorage.setItem('mll_admin', v) : sessionStorage.removeItem('mll_admin'); } catch (e) {} },
+};
+const ADMIN_IDLE_MS = 30 * 60000; // admin signs out after 30 minutes without a tap
+const adminSeen = {
+  touch() { try { sessionStorage.setItem('mll_admin_seen', String(Date.now())); } catch (e) {} },
+  idle() { try { return Date.now() - (+sessionStorage.getItem('mll_admin_seen') || Date.now()); } catch (e) { return 0; } },
+};
+if (ADMIN_KEY.get() && adminSeen.idle() > ADMIN_IDLE_MS) ADMIN_KEY.set('');
+const cleanErr = (e) => String((e && e.message) || e || 'Something went wrong').replace(/^(Exception|Error):\s*/, '');
+
+// ─── Icons (lucide) ───────────────────────────────────────────────────────────
+function Icon({ name, size = 16, className = '' }) {
+  const children = window.ICONS[name];
+  if (!children) return null;
+  return React.createElement(
+    'svg',
+    {
+      xmlns: 'http:\/\/www.w3.org/2000/svg', width: size, height: size, viewBox: '0 0 24 24', fill: 'none',
+      stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round', className,
+      'aria-hidden': 'true',
+    },
+    children.map(([tag, attrs], i) => React.createElement(tag, { key: i, ...attrs }))
+  );
+}
+
+// ─── Colours ──────────────────────────────────────────────────────────────────
+const mk = (c, hex) => ({
+  light: `bg-${c}-50`, text: `text-${c}-700`, textDark: `text-${c}-900`, border: `border-${c}-200`,
+  gradFrom: `from-${c}-500`, gradTo: `to-${c}-600`, hex,
+});
+const COLOR = {
+  indigo: mk('indigo', '#6366f1'), rose: mk('rose', '#f43f5e'), amber: mk('amber', '#f59e0b'),
+  emerald: mk('emerald', '#10b981'), violet: mk('violet', '#8b5cf6'), sky: mk('sky', '#0ea5e9'),
+  teal: mk('teal', '#14b8a6'), orange: mk('orange', '#f97316'), fuchsia: mk('fuchsia', '#d946ef'),
+  slate: mk('slate', '#64748b'),
+};
+const colorOf = (name) => COLOR[name] || COLOR.indigo;
+const BOOK_COLOR = { ...mk('amber', '#f59e0b'), gradFrom: 'from-amber-500', gradTo: 'to-orange-500' };
+const COVER_TINTS = [
+  { bg: '#fdf6ec', accent: '#d97706' }, { bg: '#eef2ff', accent: '#6366f1' }, { bg: '#ecfdf5', accent: '#10b981' },
+  { bg: '#f5f3ff', accent: '#8b5cf6' }, { bg: '#fff1f2', accent: '#f43f5e' }, { bg: '#f0f9ff', accent: '#0ea5e9' },
+];
+const COVER_GRADS = [
+  ['#7c2d12', '#ea580c'], ['#1e3a8a', '#6366f1'], ['#064e3b', '#10b981'], ['#581c87', '#a855f7'],
+  ['#881337', '#f43f5e'], ['#0c4a6e', '#0ea5e9'], ['#713f12', '#eab308'], ['#134e4a', '#14b8a6'],
+];
+const CHART_COLORS = ['#f59e0b', '#6366f1', '#10b981', '#8b5cf6', '#f43f5e', '#0ea5e9', '#f97316', '#14b8a6', '#d946ef', '#64748b'];
+
+// ─── Helpers ──────────────────────────────────────────────────────────────────
+const pad = (n) => String(n).padStart(2, '0');
+const toDate = (s) => {
+  if (!s) return null;
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(s);
+  return m ? new Date(+m[1], +m[2] - 1, +m[3]) : new Date(s);
+};
+const fmt = (s) => (s ? toDate(s).toLocaleDateString('en-IN', { day: '2-digit', month: 'short' }) : '—');
+const fmtFull = (s) => (s ? toDate(s).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }) : '—');
+const fmtTime = (d) => (d ? new Date(d).toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }) : '—');
+const daysBetween = (a, b) => Math.max(1, Math.ceil((new Date(b) - new Date(a)) / 86400000));
+const today = () => { const d = new Date(); return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`; };
+const addDays = (s, n) => { const d = toDate(s); d.setDate(d.getDate() + n); return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`; };
+const dateOf = (iso) => { if (!iso) return ''; const d = new Date(iso); return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`; };
+const daysLate = (due) => Math.round((toDate(today()) - toDate(due)) / 86400000);
+const live = (loans) => loans.filter((l) => l.status !== 'void');
+const isOverdue = (l) => l && !l.returnedAt && l.dueDate && l.dueDate < today();
+const firstName = (n) => (n || '').split(' ')[0];
+const hash = (s) => { let h = 0; for (const ch of s || '') h = (h * 31 + ch.charCodeAt(0)) | 0; return Math.abs(h); };
+const store = {
+  get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+  set(k, v) { try { v == null ? localStorage.removeItem(k) : localStorage.setItem(k, v); } catch (e) {} },
+};
+const kindTable = (kind) => (kind === 'laptop' ? 'laptopLoans' : 'bookLoans');
+const itemName = (kind, item) => (!item ? 'Unknown' : kind === 'laptop' ? item.name : item.title);
+const itemLabel = (kind, item) => (!item ? 'Unknown' : kind === 'laptop' ? `${item.emoji} ${item.name}` : item.title);
+
+function remindLinks({ kind, item, emp, loan, portalUrl }) {
+  const what = kind === 'laptop' ? `the laptop ${item.name}` : `the book "${item.title}"`;
+  const late = isOverdue(loan);
+  const msg =
+    `Hi ${firstName(emp.name)}, a gentle reminder that ${what} ` +
+    (late ? `was due back on ${fmt(loan.dueDate)}.` : `is due back on ${fmt(loan.dueDate)}.`) +
+    ` Could you return it, or extend the date on ${APP}? ${portalUrl || ''} 🙏`;
+  let phone = (emp.phone || '').replace(/\D/g, '');
+  if (phone.length === 10) phone = '91' + phone;
+  return {
+    wa: `https:\/\/wa.me/${phone}?text=${encodeURIComponent(msg)}`,
+    mail: `mailto:${emp.email || ''}?subject=${encodeURIComponent('Reminder: ' + (kind === 'laptop' ? item.name : item.title))}&body=${encodeURIComponent(msg)}`,
+    hasPhone: !!phone, hasEmail: !!emp.email,
+  };
+}
+
+async function copyText(text) {
+  try {
+    await navigator.clipboard.writeText(text);
+    return true;
+  } catch (e) {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    let ok = false;
+    try { ok = document.execCommand('copy'); } catch (err) {}
+    document.body.removeChild(ta);
+    return ok;
+  }
+}
+
+// ─── Instant updates ──────────────────────────────────────────────────────────
+// Everyday actions update the screen immediately; the server confirms (or the
+// change is rolled back with an error message) a few seconds later.
+const nowIso = () => new Date().toISOString();
+const findLoan = (d, p) => d[kindTable(p.kind)].find((l) => l.id === p.loanId);
+const OPTIMISTIC = {
+  checkout: (d, p) => d[kindTable(p.kind)].push({ id: 'tmp_' + Date.now(), itemId: p.itemId, employeeId: p.employeeId,
+    outAt: nowIso(), dueDate: p.dueDate, returnedAt: '', note: p.note || '', status: '' }),
+  return: (d, p) => { const l = findLoan(d, p); if (l && !l.returnedAt) l.returnedAt = nowIso(); },
+  undoReturn: (d, p) => { const l = findLoan(d, p); if (l) l.returnedAt = ''; },
+  extend: (d, p) => { const l = findLoan(d, p); if (l) l.dueDate = p.dueDate; },
+  voidLoan: (d, p) => { const l = findLoan(d, p); if (l) l.status = 'void'; },
+  restoreLoan: (d, p) => { const l = findLoan(d, p); if (l) l.status = ''; },
+  waitJoin: (d, p) => d.waitlist.push({ id: 'tmp_' + Date.now(), kind: p.kind, itemId: p.itemId, employeeId: p.employeeId,
+    joinedAt: nowIso(), status: 'waiting', closedAt: '' }),
+  waitLeave: (d, p) => { const w = d.waitlist.find((x) => x.id === p.id); if (w) w.status = 'left'; },
+};
+
+// ─── Root App ─────────────────────────────────────────────────────────────────
+function App() {
+  const [db, setDb] = useState(null);
+  const [version, setVersion] = useState(null);
+  const [portalUrl, setPortalUrl] = useState('');
+  const [syncing, setSyncing] = useState(false);
+  const [online, setOnline] = useState(true);
+  const [lastSync, setLastSync] = useState(null);
+  const [loadError, setLoadError] = useState('');
+  const [adminKey, setAdminKeyRaw] = useState(() => ADMIN_KEY.get());
+  const [tab, setTabRaw] = useState(() => (ADMIN_KEY.get() && store.get('mll_open_admin') ? 'admin' : 'laptops'));
+  const [dark, setDark] = useState(() => document.documentElement.classList.contains('dark'));
+  const [reloading, setReloading] = useState(false);
+  const [me, setMeRaw] = useState(() => store.get('mll_me') || '');
+  const [modal, setModal] = useState(null); // { type, ... }
+  const [toast, setToast] = useState(null);
+  const [busy, setBusy] = useState(false);
+  const versionRef = useRef(null);
+  const dbRef = useRef(null);
+  const pendingRef = useRef(0);
+  const [saving, setSaving] = useState(0);
+  const toastTimer = useRef(null);
+
+  const setTab = (t) => { setTabRaw(t); window.scrollTo({ top: 0 }); };
+  const toggleTheme = () => {
+    const next = !dark;
+    setDark(next);
+    document.documentElement.classList.toggle('dark', next);
+    store.set('mll_theme', next ? 'dark' : 'light');
+  };
+  // Signing in or out reloads the portal with fresh data, then opens the right view.
+  const reloadInto = async (key, view) => {
+    ADMIN_KEY.set(key);
+    store.set('mll_open_admin', key ? '1' : null);
+    if (key) adminSeen.touch();
+    setModal(null);
+    setReloading(true);
+    window.scrollTo({ top: 0 });
+    try { applyState(await call('api_getState', true)); } catch (e) {}
+    setAdminKeyRaw(key);
+    setTabRaw(view);
+    setReloading(false);
+  };
+  // Sign the admin out after 30 minutes with no taps or typing.
+  useEffect(() => {
+    if (!adminKey) return;
+    adminSeen.touch();
+    let last = 0;
+    const seen = () => { const n = Date.now(); if (n - last > 5000) { last = n; adminSeen.touch(); } };
+    const check = () => {
+      if (adminSeen.idle() > ADMIN_IDLE_MS) {
+        reloadInto('', 'laptops').then(() => showToast('Signed out of Admin after 30 minutes of no activity'));
+      }
+    };
+    const t = setInterval(check, 30000);
+    const onVis = () => !document.hidden && check();
+    ['pointerdown', 'keydown', 'scroll'].forEach((e) => window.addEventListener(e, seen, { passive: true }));
+    document.addEventListener('visibilitychange', onVis);
+    return () => {
+      clearInterval(t);
+      ['pointerdown', 'keydown', 'scroll'].forEach((e) => window.removeEventListener(e, seen));
+      document.removeEventListener('visibilitychange', onVis);
+    };
+  }, [adminKey]);
+  const setMe = (id) => { setMeRaw(id || ''); store.set('mll_me', id || null); };
+
+  const applyState = useCallback((json) => {
+    const s = typeof json === 'string' ? JSON.parse(json) : json;
+    versionRef.current = s.version;
+    setVersion(s.version);
+    setDb(s.db);
+    dbRef.current = s.db;
+    if (s.portalUrl) setPortalUrl(s.portalUrl);
+    setOnline(true);
+    setLastSync(new Date());
+  }, []);
+
+  const refresh = useCallback(async (manual) => {
+    if (manual) setSyncing(true);
+    try {
+      const res = manual || versionRef.current == null
+        ? await call('api_getState', !!manual)
+        : await call('api_poll', versionRef.current);
+      // Don't let a background poll overwrite a change that is still saving.
+      if (res && pendingRef.current === 0) applyState(res);
+      else { setOnline(true); setLastSync(new Date()); }
+    } catch (e) {
+      setOnline(false);
+      if (versionRef.current == null) setLoadError(e.message);
+    } finally {
+      if (manual) setSyncing(false);
+    }
+  }, [applyState]);
+
+  useEffect(() => {
+    if (BOOT) applyState(BOOT);
+    refresh(false);
+    // Warm up the charts library in the background so Stats opens instantly.
+    const warm = setTimeout(() => loadCharts().catch(() => {}), 4000);
+    const t = setInterval(() => { if (!document.hidden) refresh(false); }, POLL_INTERVAL);
+    const onVis = () => { if (!document.hidden) refresh(false); };
+    const goOnline = () => { setOnline(true); refresh(false); };
+    const goOffline = () => setOnline(false);
+    document.addEventListener('visibilitychange', onVis);
+    window.addEventListener('online', goOnline);
+    window.addEventListener('offline', goOffline);
+    return () => {
+      clearTimeout(warm);
+      clearInterval(t);
+      document.removeEventListener('visibilitychange', onVis);
+      window.removeEventListener('online', goOnline);
+      window.removeEventListener('offline', goOffline);
+    };
+  }, [refresh]);
+
+  const showToast = useCallback((msg, kind = 'success', undo = null) => {
+    clearTimeout(toastTimer.current);
+    setToast({ msg, kind, undo });
+    toastTimer.current = setTimeout(() => setToast(null), undo ? 6500 : 2800);
+  }, []);
+
+  /** Runs a server action; returns the result or null on failure. */
+  const mutate = useCallback(async (action, payload, opts = {}) => {
+    const patch = OPTIMISTIC[action];
+    const before = dbRef.current;
+    const instant = !!(patch && before);
+    try { if (instant && navigator.vibrate) navigator.vibrate(12); } catch (e) {}
+    if (instant) {
+      const draft = JSON.parse(JSON.stringify(before));
+      try { patch(draft, payload); dbRef.current = draft; setDb(draft); } catch (e) {}
+    } else {
+      setBusy(true);
+    }
+    pendingRef.current += 1;
+    setSaving(pendingRef.current);
+    try {
+      const res = JSON.parse(await call('api_mutate', action, payload, ADMIN_KEY.get()));
+      applyState(res.state);
+      if (!opts.silent) {
+        const undo = opts.undo ? opts.undo(res) : null;
+        showToast(opts.message || res.message, 'success', undo);
+      }
+      return res;
+    } catch (e) {
+      if (instant && before) { dbRef.current = before; setDb(before); }
+      showToast(e.message || 'Could not save — check connection', 'error');
+      refresh(false);
+      return null;
+    } finally {
+      pendingRef.current -= 1;
+      setSaving(pendingRef.current);
+      if (!instant) setBusy(false);
+    }
+  }, [applyState, showToast, refresh]);
+
+  if (!db || reloading)
+    return html`
+      <div className="min-h-screen bg-stone-50 flex flex-col items-center justify-center gap-3 px-6 text-center">
+        <div className="text-4xl animate-bounce">📚</div>
+        ${loadError
+          ? html`<div className="text-rose-700 font-medium">Couldn’t reach the tracker.</div>
+              <div className="text-sm text-stone-500 max-w-sm">${loadError}</div>
+              <button onClick=${() => { setLoadError(''); refresh(true); }} className="mt-2 px-4 py-2 bg-amber-600 text-white rounded-lg text-sm font-medium">Try Again</button>`
+          : html`<div className="text-amber-700 font-medium animate-pulse">${reloading ? (adminKey ? 'Opening the portal…' : 'Opening Admin…') : 'Loading from Google Sheets…'}</div>`}
+      </div>`;
+
+  const az = (key) => (a, b) => String(a[key]).localeCompare(String(b[key]), 'en', { sensitivity: 'base', numeric: true });
+  const ctx = {
+    db, me, setMe, mutate, busy, showToast, portalUrl, setModal, setTab, applyState, isAdmin: !!adminKey,
+    exitAdmin: () => reloadInto('', 'laptops'),
+    confirm: (opts) => setModal({ type: 'confirm', ...opts }),
+    employees: db.employees.filter((e) => e.active !== false).sort(az('name')),
+    allEmployees: [...db.employees].sort(az('name')),
+    laptops: db.laptops.filter((l) => l.active !== false).sort(az('name')),
+    books: db.books.filter((b) => b.active !== false).sort(az('title')),
+    activeFor: (kind, itemId) => live(db[kindTable(kind)]).find((l) => l.itemId === itemId && !l.returnedAt),
+    queueFor: (kind, itemId) => db.waitlist
+      .filter((w) => w.kind === kind && w.itemId === itemId && w.status === 'waiting')
+      .sort((a, b) => (a.joinedAt < b.joinedAt ? -1 : 1)),
+    empById: (id) => db.employees.find((e) => e.id === id),
+    itemById: (kind, id) => (kind === 'laptop' ? db.laptops : db.books).find((x) => x.id === id),
+    settings: db.settings || {},
+  };
+
+  // Shared actions used across tabs.
+  ctx.doReturn = (kind, loan) =>
+    loan.id.indexOf('tmp_') === 0 ? showToast('Still saving — one moment…') : mutate('return', { kind, loanId: loan.id }, {
+      undo: () => () => mutate('undoReturn', { kind, loanId: loan.id }),
+    });
+  ctx.openCheckout = (kind, item) => setModal({ type: 'checkout', kind, item });
+  ctx.openExtend = (kind, loan) => setModal({ type: 'extend', kind, loan });
+  ctx.openRemind = (kind, loan) => setModal({ type: 'remind', kind, loan });
+  ctx.openWaitlist = (kind, item) => setModal({ type: 'waitlist', kind, item });
+  ctx.openBook = (book) => setModal({ type: 'book', book });
+
+  const meEmp = ctx.empById(me);
+
+  return html`
+    <div className="min-h-screen bg-stone-50 pb-28 overflow-x-clip max-w-[480px] mx-auto shadow-[0_0_0_1px_rgba(0,0,0,0.04),0_10px_40px_rgba(0,0,0,0.06)]">
+      <div className="sticky top-0 z-30">
+      <${Header}
+        online=${online} syncing=${syncing} saving=${saving > 0} lastSync=${lastSync} meEmp=${meEmp}
+        onRefresh=${() => refresh(true)} onShare=${() => setModal({ type: 'share' })}
+        dark=${dark} onTheme=${toggleTheme} isAdmin=${!!adminKey}
+        onSettings=${() => (adminKey ? setTab('admin') : setModal({ type: 'adminLogin' }))}
+      />
+      <${Tabs} tab=${tab} setTab=${setTab} ctx=${ctx} />
+      </div>
+
+      <main className="max-w-[480px] mx-auto px-4 py-6">
+        ${tab === 'laptops' && html`<${LaptopBoard} ctx=${ctx} />`}
+        ${tab === 'library' && html`<${Library} ctx=${ctx} />`}
+        ${tab === 'history' && html`<${HistoryView} ctx=${ctx} />`}
+        ${tab === 'admin' && (adminKey ? html`<${AdminView} ctx=${ctx} />` : html`<${AdminLocked} onOpen=${() => setModal({ type: 'adminLogin' })} />`)}
+      </main>
+
+      ${modal && modal.type === 'checkout' && html`<${CheckoutModal} ctx=${ctx} kind=${modal.kind} item=${modal.item} onClose=${() => setModal(null)} />`}
+      ${modal && modal.type === 'extend' && html`<${ExtendModal} ctx=${ctx} kind=${modal.kind} loan=${modal.loan} onClose=${() => setModal(null)} />`}
+      ${modal && modal.type === 'remind' && html`<${RemindModal} ctx=${ctx} kind=${modal.kind} loan=${modal.loan} onClose=${() => setModal(null)} />`}
+      ${modal && modal.type === 'waitlist' && html`<${WaitlistModal} ctx=${ctx} kind=${modal.kind} item=${modal.item} onClose=${() => setModal(null)} />`}
+      ${modal && modal.type === 'book' && html`<${BookModal} ctx=${ctx} bookId=${modal.book.id} onClose=${() => setModal(null)} />`}
+      ${modal && modal.type === 'editLoan' && html`<${EditLoanModal} ctx=${ctx} kind=${modal.kind} loan=${modal.loan} onClose=${() => setModal(null)} />`}
+      ${modal && modal.type === 'bookEdit' && html`<${BookEditModal} ctx=${ctx} book=${modal.book} onClose=${() => setModal(null)} />`}
+      ${modal && modal.type === 'confirm' && html`<${ConfirmModal} ...${modal} onClose=${() => setModal(null)} />`}
+      ${modal && modal.type === 'adminLogin' && html`<${AdminLoginModal} onClose=${() => setModal(null)} onSuccess=${(key) => reloadInto(key, 'admin')} />`}
+      ${modal && modal.type === 'share' && html`<${ShareModal} url=${SHORT_URL} onClose=${() => setModal(null)} />`}
+
+      ${toast && html`
+        <div role="status" className=${`fixed bottom-20 left-1/2 -translate-x-1/2 pl-5 ${toast.undo ? 'pr-2' : 'pr-5'} py-2.5 rounded-full shadow-lg text-white font-medium z-[60] flex items-center gap-3 w-max max-w-[92vw] ${toast.kind === 'error' ? 'bg-rose-600' : 'bg-stone-900'}`}>
+          <span className="text-sm truncate">${toast.msg}</span>
+          ${toast.undo && html`
+            <button onClick=${() => { const u = toast.undo; setToast(null); u(); }}
+              className="px-3 py-1 rounded-full bg-white/15 hover:bg-white/25 text-amber-300 text-sm flex items-center gap-1 shrink-0">
+              <${Icon} name="Undo2" size=${14} /> Undo
+            </button>`}
+        </div>`}
+    </div>`;
+}
+
+// ─── Header ───────────────────────────────────────────────────────────────────
+function Header({ online, syncing, saving, lastSync, meEmp, onRefresh, onShare, onSettings, onMe, dark, onTheme, isAdmin }) {
+  return html`
+    <header className="bg-white">
+      <div className="max-w-[480px] mx-auto px-4 py-3 flex items-center justify-between gap-2">
+        <div className="min-w-0">
+          <h1 className="text-[17px] font-semibold text-stone-900 leading-tight tracking-tight">
+            📚 ${APP}
+          </h1>
+          <div className="flex items-center gap-1.5 mt-0.5">
+            ${saving
+              ? html`<${Icon} name="RefreshCw" size=${11} className="text-amber-600 animate-spin" />
+                  <span className="text-xs text-amber-700">Saving…</span>`
+              : online
+              ? html`<${Icon} name="Wifi" size=${11} className="text-emerald-500" />
+                  <span className="text-xs text-emerald-600 whitespace-nowrap">Synced<span className="hidden"> with Google Sheets</span>${lastSync ? ` · ${fmtTime(lastSync)}` : ''}</span>`
+              : html`<${Icon} name="WifiOff" size=${11} className="text-rose-500" />
+                  <span className="text-xs text-rose-600">Offline — reconnecting…</span>`}
+          </div>
+        </div>
+        <div className="flex items-center gap-1 shrink-0">
+          ${meEmp && html`
+            <button onClick=${onMe} title="My items"
+              className="hidden items-center gap-1.5 pl-1 pr-2.5 py-1 mr-1 rounded-full border border-stone-200 text-stone-700 text-xs font-medium hover:bg-stone-50">
+              <span className="w-6 h-6 rounded-full bg-amber-600 text-white flex items-center justify-center text-[10px] font-bold">
+                ${meEmp.name.split(' ').map((p) => p[0]).slice(0, 2).join('')}
+              </span>
+              ${firstName(meEmp.name)}
+            </button>`}
+          <button onClick=${onRefresh} title="Refresh now" className=${`p-2.5 rounded-lg hover:bg-stone-100 text-stone-500 ${syncing ? 'animate-spin' : ''}`}>
+            <${Icon} name="RefreshCw" size=${17} />
+          </button>
+          <button onClick=${onTheme} title=${dark ? 'Light mode' : 'Dark mode'} aria-label=${dark ? 'Switch to light mode' : 'Switch to dark mode'} className="p-2.5 rounded-lg hover:bg-stone-100 text-stone-500">
+            <${Icon} name=${dark ? 'Sun' : 'Moon'} size=${17} />
+          </button>
+          <button onClick=${onShare} title="Share" className="p-2.5 rounded-lg hover:bg-stone-100 text-stone-500">
+            <${Icon} name="Share2" size=${17} />
+          </button>
+          <button onClick=${onSettings} title="Admin" aria-label="Admin" className=${`p-2.5 rounded-lg hover:bg-stone-100 ${isAdmin ? 'text-amber-600' : 'text-stone-500'}`}>
+            <${Icon} name=${isAdmin ? 'ShieldCheck' : 'Settings'} size=${17} />
+          </button>
+        </div>
+      </div>
+    </header>`;
+}
+
+// ─── Tabs ─────────────────────────────────────────────────────────────────────
+function Tabs({ tab, setTab, ctx }) {
+  const mineCount = ctx.me
+    ? live(ctx.db.laptopLoans).concat(live(ctx.db.bookLoans)).filter((l) => l.employeeId === ctx.me && !l.returnedAt).length
+    : 0;
+  const items = [
+    { id: 'library', label: 'Books', icon: 'BookOpen' },
+    { id: 'laptops', label: 'Laptops', icon: 'Laptop' },
+    { id: 'history', label: 'History', icon: 'History' },
+  ].concat(ctx.isAdmin ? [{ id: 'admin', label: 'Admin', icon: 'ShieldCheck' }] : []);
+  const badge = (n, cls) => (n ? html`<span className=${`min-w-[18px] h-[18px] px-1 rounded-full bg-amber-600 text-white text-[10px] flex items-center justify-center ${cls}`}>${n}</span>` : null);
+  return html`
+    <nav className="hidden bg-white border-b border-stone-200">
+      <div className="max-w-[480px] mx-auto px-2 flex overflow-x-auto no-scrollbar">
+        ${items.map(({ id, label, icon, badge: n }) => html`
+          <button key=${id} onClick=${() => setTab(id)}
+            className=${`flex items-center gap-2 px-4 py-3 text-sm font-medium border-b-2 whitespace-nowrap transition-colors ${
+              tab === id ? 'border-amber-600 text-stone-900' : 'border-transparent text-stone-500 hover:text-stone-700'}`}>
+            <${Icon} name=${icon} size=${15} />
+            ${label}
+            ${badge(n, 'ml-0.5')}
+          </button>`)}
+      </div>
+    </nav>
+    <nav className=" fixed bottom-0 inset-x-0 mx-auto max-w-[480px] z-40 bg-white/95 backdrop-blur border-t border-stone-200 pb-safe" aria-label="Main">
+      <div className=${ctx.isAdmin ? 'grid grid-cols-4' : 'grid grid-cols-3'}>
+        ${items.map(({ id, label, icon, badge: n }) => html`
+          <button key=${id} onClick=${() => setTab(id)} aria-current=${tab === id ? 'page' : undefined}
+            className=${`relative flex flex-col items-center justify-center gap-0.5 h-14 text-[10.5px] font-medium ${tab === id ? 'text-amber-700' : 'text-stone-500'}`}>
+            ${tab === id && html`<span className="absolute top-0 inset-x-5 h-0.5 rounded-full bg-amber-600" />`}
+            <${Icon} name=${icon} size=${20} />
+            ${label}
+            ${badge(n, 'absolute top-1.5 left-1/2 ml-1.5')}
+          </button>`)}
+      </div>
+    </nav>`;
+}
+
+// ─── Small shared pieces ──────────────────────────────────────────────────────
+function StatPill({ label, value, color }) {
+  const c = colorOf(color);
+  return html`
+    <div className="bg-white border border-stone-200 rounded-xl px-2 py-2 text-center">
+      <div className=${`text-xl font-semibold leading-tight ${c.text}`}>${value}</div>
+      <div className="text-xs text-stone-500 mt-0.5 flex items-center justify-center gap-1.5"><span className=${`w-1.5 h-1.5 rounded-full ${c.light.replace('-50', '-500')}`} />${label}</div>
+    </div>`;
+}
+
+/** Status badge for something that's out: Overdue › Due Today › Due Tomorrow › In Use / On Loan. */
+function LoanBadge({ loan, kind }) {
+  if (isOverdue(loan)) return html`<${Badge} tone="rose" icon="CircleAlert">Overdue</_>`;
+  if (loan.dueDate === today()) return html`<${Badge} tone="orange" icon="Clock">Due Today</_>`;
+  if (loan.dueDate === addDays(today(), 1)) return html`<${Badge} tone="amber" icon="Clock">Due Tomorrow</_>`;
+  return html`<${Badge} tone="amber" icon="Clock">${kind === 'laptop' ? 'In Use' : 'On Loan'}</_>`;
+}
+
+function Badge({ tone, icon, children }) {
+  const tones = {
+    green: 'bg-emerald-100 text-emerald-700', amber: 'bg-amber-100 text-amber-700',
+    rose: 'bg-rose-100 text-rose-700', stone: 'bg-stone-100 text-stone-600', orange: 'bg-orange-600 text-white',
+  };
+  return html`
+    <span className=${`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium ${tones[tone]}`}>
+      ${icon && html`<${Icon} name=${icon} size=${11} />`}${children}
+    </span>`;
+}
+
+function LinkBtn({ onClick, icon, children, tone = 'stone' }) {
+  const t = tone === 'rose' ? 'text-rose-600 hover:text-rose-700' : 'text-stone-500 hover:text-stone-800';
+  return html`
+    <button onClick=${onClick} className=${`inline-flex items-center gap-1 text-xs font-medium py-2 px-1 -my-1 ${t}`}>
+      <${Icon} name=${icon} size=${12} /> ${children}
+    </button>`;
+}
+
+function Modal({ children, onClose, wide }) {
+  useEffect(() => {
+    const onKey = (e) => e.key === 'Escape' && onClose();
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [onClose]);
+  return html`
+    <div className="fixed inset-0 bg-black/40 z-50 flex items-end justify-center p-0"
+      onMouseDown=${(e) => e.target === e.currentTarget && onClose()}>
+      <div className=${`bg-white w-full max-w-[480px] ${wide ? '' : ''} rounded-t-2xl overflow-hidden shadow-2xl max-h-[90vh] max-h-[90dvh] flex flex-col pb-safe`}>
+        ${children}
+      </div>
+    </div>`;
+}
+
+function ModalHeader({ grad, title, subtitle, onClose }) {
+  return html`
+    <div className="px-5 pt-5 pb-4 border-b border-stone-100 flex items-start justify-between gap-3 shrink-0">
+      <div className="min-w-0">
+        <div className="text-lg font-semibold text-stone-900 leading-snug">${title}</div>
+        ${subtitle && html`<div className="text-sm text-stone-500 truncate mt-0.5">${subtitle}</div>`}
+      </div>
+      <button onClick=${onClose} className="p-1.5 -mr-1.5 text-stone-400 hover:text-stone-700 hover:bg-stone-100 rounded-lg shrink-0" aria-label="Close"><${Icon} name="X" size=${18} /></button>
+    </div>`;
+}
+
+// Native <select> with a consistent look and our own chevron on every phone.
+function Select({ value, onChange, disabled, children, className = '' }) {
+  return html`
+    <div className=${`relative min-w-0 ${className}`}>
+      <select value=${value} onChange=${onChange} disabled=${disabled}
+        className="w-full h-11 pl-3 pr-9 border border-stone-300 rounded-xl bg-white text-stone-800 font-normal truncate appearance-none focus:outline-none focus:ring-2 focus:ring-amber-500 disabled:bg-stone-50 disabled:text-stone-400">
+        ${children}
+      </select>
+      <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-stone-400"><${Icon} name="ChevronDown" size=${16} /></span>
+    </div>`;
+}
+
+const inputCls = 'w-full px-3 py-2.5 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm bg-white';
+
+function Field({ label, hint, children }) {
+  return html`
+    <div>
+      <label className="block text-sm font-medium text-stone-700 mb-1.5">
+        ${label}${hint && html` <span className="text-stone-400 font-normal">${hint}</span>`}
+      </label>
+      ${children}
+    </div>`;
+}
+
+function ModalButtons({ onCancel, onConfirm, disabled, loading, label, grad }) {
+  return html`
+    <div className="flex gap-2 pt-1">
+      <button onClick=${onCancel} className="flex-1 px-4 py-2.5 border border-stone-300 rounded-lg font-medium text-stone-700 hover:bg-stone-50 text-sm">Cancel</button>
+      <button onClick=${onConfirm} disabled=${disabled || loading}
+        className=${`flex-1 px-4 py-2.5 rounded-lg font-medium text-white text-sm bg-amber-600 hover:bg-amber-700 disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2`}>
+        ${loading ? html`<${Icon} name="RefreshCw" size=${14} className="animate-spin" /> Saving…` : label}
+      </button>
+    </div>`;
+}
+
+// Book cover with a typographic fallback when there's no image (or it fails to load).
+function Cover({ book, className = '', small }) {
+  const [failed, setFailed] = useState(false);
+  if (book.cover && !failed)
+    return html`<img src=${book.cover} alt=${book.title} loading="lazy" decoding="async" onError=${() => setFailed(true)}
+      className=${`object-cover bg-stone-100 ${className}`} />`;
+  const t = COVER_TINTS[hash(book.title) % COVER_TINTS.length];
+  return html`
+    <div className=${`relative flex flex-col justify-center text-center overflow-hidden cover-serif ${small ? 'p-1' : 'px-4 py-6'} ${className}`}
+      style=${{ background: t.bg }}>
+      <span className="absolute inset-x-0 top-0 h-1.5" style=${{ background: t.accent }} />
+      <div className=${`font-semibold leading-snug text-stone-800 ${small ? 'text-[6px]' : 'text-[15px]'}`}>${book.title}</div>
+      ${!small && html`
+        <div className="mx-auto my-3 h-px w-8" style=${{ background: t.accent }} />
+        <div className="text-[11px] leading-tight text-stone-500">${book.author}</div>`}
+    </div>`;
+}
+
+// ─── Laptop board (same look as the original) ─────────────────────────────────
+function LaptopBoard({ ctx }) {
+  const { laptops, activeFor } = ctx;
+  const counts = {
+    available: laptops.filter((l) => !activeFor('laptop', l.id) && !l.repair).length,
+    inUse: laptops.filter((l) => activeFor('laptop', l.id)).length,
+    overdue: laptops.filter((l) => isOverdue(activeFor('laptop', l.id))).length,
+  };
+  return html`
+    <div className="space-y-4">
+      <div className="grid grid-cols-3 gap-2">
+        <${StatPill} label="Available" value=${counts.available} color="emerald" />
+        <${StatPill} label="In Use" value=${counts.inUse} color="indigo" />
+        <${StatPill} label="Overdue" value=${counts.overdue} color="rose" />
+      </div>
+      <div className="grid gap-2.5">
+        ${laptops.map((lap) => html`<${LaptopCard} key=${lap.id} lap=${lap} ctx=${ctx} />`)}
+      </div>
+    </div>`;
+}
+
+// One compact row per laptop: who has it (or that it's free) and the main action.
+function LaptopCard({ lap, ctx }) {
+  const active = ctx.activeFor('laptop', lap.id);
+  const emp = active ? ctx.empById(active.employeeId) : null;
+  const overdue = isOverdue(active);
+  const queue = ctx.queueFor('laptop', lap.id);
+  const c = colorOf(lap.color);
+  const nextName = queue.length ? firstName((ctx.empById(queue[0].employeeId) || {}).name) : '';
+  return html`
+    <div className=${`bg-white rounded-2xl border shadow-sm px-3 py-3 ${overdue ? 'border-rose-200' : 'border-stone-200'}`}>
+      <div className="flex items-center gap-3">
+        <div className=${`${c.light} w-10 h-10 rounded-xl flex items-center justify-center text-xl shrink-0`}>${lap.emoji}</div>
+        <div className="min-w-0 flex-1">
+          <div className="flex items-center gap-2 min-w-0">
+            <span className="font-semibold text-stone-900 leading-tight truncate">${lap.name}</span>
+            ${active && html`<${LoanBadge} loan=${active} kind="laptop" />`}
+          </div>
+          <div className="text-xs text-stone-500 truncate mt-0.5">
+            ${active
+              ? html`${emp ? emp.name : 'Unknown'} · <span className=${overdue ? 'text-rose-700 font-medium' : ''}>${overdue ? 'was due' : 'due'} ${fmt(active.dueDate)}</span>`
+              : lap.repair
+              ? html`<span className="text-stone-500">Under repair${lap.repair.toLowerCase() !== 'yes' && lap.repair.toLowerCase() !== 'under repair' ? ` · ${lap.repair}` : ''}</span>`
+              : queue.length
+              ? html`<span className="text-amber-700">Reserved for ${nextName}${queue.length > 1 ? ` +${queue.length - 1}` : ''}</span>`
+              : html`<span className="text-emerald-600">Available</span> · ${lap.tagline}`}
+          </div>
+        </div>
+        ${active
+          ? html`<button onClick=${() => ctx.doReturn('laptop', active)} disabled=${ctx.busy}
+              className="shrink-0 h-10 px-3.5 bg-stone-900 hover:bg-stone-800 text-white rounded-lg font-medium text-sm disabled:opacity-60">Return</button>`
+          : lap.repair
+          ? html`<span className="shrink-0 h-10 px-3 rounded-lg bg-stone-100 text-stone-500 text-sm font-medium flex items-center gap-1.5"><${Icon} name="Wrench" size=${14} /> Repair</span>`
+          : html`<button onClick=${() => ctx.openCheckout('laptop', lap)}
+              className="shrink-0 h-10 px-3.5 bg-amber-600 hover:bg-amber-700 text-white rounded-lg font-medium text-sm">Check Out</button>`}
+      </div>
+      ${active && html`
+        <div className="flex items-center gap-4 mt-1.5 pl-[52px]">
+          <${LinkBtn} icon="CalendarPlus" onClick=${() => ctx.openExtend('laptop', active)}>Extend</_>
+          ${overdue && html`<${LinkBtn} icon="Bell" tone="rose" onClick=${() => ctx.openRemind('laptop', active)}>Remind</_>`}
+          <${LinkBtn} icon="ListOrdered" onClick=${() => ctx.openWaitlist('laptop', lap)}>${queue.length ? `Waitlist (${queue.length})` : 'Join Waitlist'}</_>
+        </div>`}
+    </div>`;
+}
+
+// ─── Employee picker ──────────────────────────────────────────────────────────
+function EmployeePicker({ employees, value, onChange, placeholder = 'Search team members…', autoFocus }) {
+  const [query, setQuery] = useState('');
+  const [open, setOpen] = useState(false);
+  const [hi, setHi] = useState(0);
+  const selected = employees.find((e) => e.id === value);
+  const filtered = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    return q ? employees.filter((e) => e.name.toLowerCase().includes(q)) : employees;
+  }, [employees, query]);
+  const pick = (e) => { onChange(e.id); setQuery(''); setOpen(false); };
+  return html`
+    <div className="relative">
+      <div className="relative">
+        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-400 pointer-events-none"><${Icon} name="Search" size=${15} /></span>
+        <input type="text" autoFocus=${autoFocus}
+          value=${open ? query : (selected ? selected.name : '')}
+          onChange=${(e) => { setQuery(e.target.value); setOpen(true); setHi(0); }}
+          onFocus=${() => { setQuery(''); setOpen(true); setHi(0); }}
+          onBlur=${() => setTimeout(() => setOpen(false), 150)}
+          onKeyDown=${(e) => {
+            if (e.key === 'ArrowDown') { e.preventDefault(); setHi((h) => Math.min(h + 1, filtered.length - 1)); }
+            if (e.key === 'ArrowUp') { e.preventDefault(); setHi((h) => Math.max(h - 1, 0)); }
+            if (e.key === 'Enter' && filtered[hi]) { e.preventDefault(); pick(filtered[hi]); e.target.blur(); }
+          }}
+          placeholder=${placeholder}
+          className="w-full pl-9 pr-3 py-2.5 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm" />
+      </div>
+      ${open && html`
+        <div className="absolute left-0 right-0 mt-1 max-h-56 overflow-y-auto bg-white border border-stone-200 rounded-xl shadow-lg z-20">
+          ${filtered.length === 0
+            ? html`<div className="px-3 py-2 text-sm text-stone-400">No matches</div>`
+            : filtered.map((e, i) => html`
+              <button key=${e.id} type="button" onMouseDown=${(ev) => ev.preventDefault()} onClick=${() => pick(e)}
+                className=${`w-full text-left px-3 py-2 text-sm hover:bg-amber-50 transition-colors ${
+                  e.id === value ? 'bg-amber-50 text-amber-700 font-medium' : i === hi && query ? 'bg-stone-50 text-stone-800' : 'text-stone-700'}`}>
+                ${e.name}
+              </button>`)}
+        </div>`}
+    </div>`;
+}
+
+// ─── Checkout / issue modal (laptops and books) ───────────────────────────────
+function CheckoutModal({ ctx, kind, item, onClose }) {
+  const isLaptop = kind === 'laptop';
+  const queue = ctx.queueFor(kind, item.id);
+  const defaultEmp = queue.length ? queue[0].employeeId : ctx.me && ctx.empById(ctx.me) ? ctx.me : '';
+  const [employeeId, setEmployeeId] = useState(defaultEmp);
+  const days = parseInt(isLaptop ? ctx.settings.laptopLoanDays : ctx.settings.bookLoanDays, 10) || (isLaptop ? 7 : 14);
+  const [returnDate, setReturnDate] = useState(addDays(today(), days));
+  const [purpose, setPurpose] = useState('');
+  const [loading, setLoading] = useState(false);
+  const c = isLaptop ? colorOf(item.color) : BOOK_COLOR;
+  const jumpQueue = queue.length > 0 && employeeId && queue[0].employeeId !== employeeId;
+  const remembered = !!ctx.me && employeeId === ctx.me;
+
+  const submit = async () => {
+    if (!employeeId) return;
+    ctx.mutate('checkout', { kind, itemId: item.id, employeeId, dueDate: returnDate, note: purpose }, {
+      undo: (r) => () => ctx.mutate('voidLoan', { kind, loanId: r.extra.loanId }, { message: isLaptop ? 'Checkout undone' : 'Issue undone' }),
+    });
+    if (!ctx.me) ctx.setMe(employeeId);
+    onClose();
+  };
+
+
+  return html`
+    <${Modal} onClose=${onClose}>
+      <${ModalHeader} grad=${`${c.gradFrom} ${c.gradTo}`} onClose=${onClose}
+        title=${isLaptop ? `${item.emoji} ${item.name}` : html`<span>${item.title}</span>`}
+        subtitle=${isLaptop ? item.tagline : item.author} />
+      <div className="p-5 space-y-4 overflow-y-auto">
+        <${Field} label=${isLaptop ? 'Who’s Taking It?' : 'Who’s Borrowing It?'}>
+          <${EmployeePicker} employees=${ctx.employees} value=${employeeId} onChange=${setEmployeeId} />
+          ${remembered && html`
+            <div className="mt-1.5 text-xs text-stone-500 flex items-center gap-1.5">
+              <${Icon} name="Check" size=${12} className="text-emerald-600" /> Remembered on this phone.
+              <button onClick=${() => { ctx.setMe(''); setEmployeeId(''); }} className="font-medium text-amber-700 py-1">Not You?</button>
+            </div>`}
+        </_>
+        ${jumpQueue && html`
+          <div className="text-xs bg-amber-50 border border-amber-200 text-amber-800 rounded-lg px-3 py-2 flex gap-2">
+            <${Icon} name="Hourglass" size=${14} className="shrink-0 mt-0.5" />
+            <span><b>${(ctx.empById(queue[0].employeeId) || {}).name}</b> is first on the waitlist (since ${fmt(queue[0].joinedAt)}). You can still go ahead.</span>
+          </div>`}
+        <${Field} label="Expected Return Date">
+          <input type="date" value=${returnDate} min=${today()} onChange=${(e) => setReturnDate(e.target.value)} className=${inputCls} />
+        </_>
+        <${Field} label=${isLaptop ? 'Purpose' : 'Note'} hint="(optional)">
+          <input type="text" value=${purpose} onChange=${(e) => setPurpose(e.target.value)}
+            onKeyDown=${(e) => e.key === 'Enter' && submit()}
+            placeholder=${isLaptop ? 'e.g. Campaign content with Midjourney' : 'e.g. Reading for the book club'} className=${inputCls} />
+        </_>
+        <${ModalButtons} onCancel=${onClose} onConfirm=${submit} disabled=${!employeeId || !returnDate} loading=${loading}
+          label=${isLaptop ? 'Confirm Checkout' : 'Issue Book'} grad=${`${c.gradFrom} ${c.gradTo}`} />
+      </div>
+    </_>`;
+}
+
+function ExtendModal({ ctx, kind, loan, onClose }) {
+  const item = ctx.itemById(kind, loan.itemId);
+  const emp = ctx.empById(loan.employeeId);
+  const base = loan.dueDate && loan.dueDate > today() ? loan.dueDate : today();
+  const [date, setDate] = useState(addDays(base, kind === 'laptop' ? 2 : 7));
+  const [loading, setLoading] = useState(false);
+  const save = async () => {
+    const oldDue = loan.dueDate;
+    ctx.mutate('extend', { kind, loanId: loan.id, dueDate: date }, {
+      undo: () => () => ctx.mutate('extend', { kind, loanId: loan.id, dueDate: oldDue < today() ? today() : oldDue }),
+    });
+    onClose();
+  };
+  return html`
+    <${Modal} onClose=${onClose}>
+      <${ModalHeader} grad="from-stone-700 to-stone-800" onClose=${onClose} title="Extend Due Date"
+        subtitle=${`${itemLabel(kind, item)} · with ${emp ? emp.name : 'Unknown'}`} />
+      <div className="p-5 space-y-4">
+        <div className="text-sm text-stone-600">Currently due <b className=${isOverdue(loan) ? 'text-rose-700' : ''}>${fmtFull(loan.dueDate)}</b>${isOverdue(loan) ? ` (${daysLate(loan.dueDate)}d late)` : ''}</div>
+        <div className="flex flex-wrap gap-2">
+          ${[[2, '+2 Days'], [7, '+1 Week'], [14, '+2 Weeks']].map(([n, l]) => html`
+            <button key=${n} onClick=${() => setDate(addDays(base, n))}
+              className=${`px-3 py-1.5 rounded-full text-xs font-medium border ${date === addDays(base, n) ? 'bg-amber-100 border-amber-300 text-amber-800' : 'border-stone-200 text-stone-600 hover:bg-stone-50'}`}>${l}</button>`)}
+        </div>
+        <${Field} label="New Return Date">
+          <input type="date" value=${date} min=${today()} onChange=${(e) => setDate(e.target.value)} className=${inputCls} />
+        </_>
+        <${ModalButtons} onCancel=${onClose} onConfirm=${save} disabled=${!date} loading=${loading} label="Save New Date" grad="from-stone-700 to-stone-800" />
+      </div>
+    </_>`;
+}
+
+function RemindModal({ ctx, kind, loan, onClose }) {
+  const item = ctx.itemById(kind, loan.itemId);
+  const emp = ctx.empById(loan.employeeId) || { name: 'there', email: '', phone: '' };
+  const links = remindLinks({ kind, item, emp, loan, portalUrl: SHORT_URL });
+  return html`
+    <${Modal} onClose=${onClose}>
+      <${ModalHeader} grad="from-rose-500 to-pink-500" onClose=${onClose} title="Send a Reminder"
+        subtitle=${`${itemLabel(kind, item)} · ${emp.name}`} />
+      <div className="p-5 space-y-3">
+        <div className="text-sm text-stone-600">
+          ${isOverdue(loan)
+            ? html`Was due <b className="text-rose-700">${fmtFull(loan.dueDate)}</b> — ${daysLate(loan.dueDate)} day${daysLate(loan.dueDate) === 1 ? '' : 's'} late.`
+            : html`Due <b>${fmtFull(loan.dueDate)}</b>.`}
+        </div>
+        <a href=${links.wa} target="_blank" rel="noopener noreferrer"
+          className="w-full px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-medium flex items-center justify-center gap-2 transition-colors">
+          <${Icon} name="MessageCircle" size=${16} /> WhatsApp ${firstName(emp.name)}
+        </a>
+        ${!links.hasPhone && html`
+          <p className="text-xs text-stone-400">
+            Tip: add ${firstName(emp.name)}’s WhatsApp number in Admin → Manage → Team Members to open their chat directly.
+          </p>`}
+      </div>
+    </_>`;
+}
+
+function WaitlistModal({ ctx, kind, item, onClose }) {
+  const queue = ctx.queueFor(kind, item.id);
+  const [employeeId, setEmployeeId] = useState(ctx.me && ctx.empById(ctx.me) ? ctx.me : '');
+  const [loading, setLoading] = useState(false);
+  const join = async () => {
+    ctx.mutate('waitJoin', { kind, itemId: item.id, employeeId });
+    if (!ctx.me) ctx.setMe(employeeId);
+  };
+  const c = kind === 'laptop' ? colorOf(item.color) : BOOK_COLOR;
+  return html`
+    <${Modal} onClose=${onClose}>
+      <${ModalHeader} grad=${`${c.gradFrom} ${c.gradTo}`} onClose=${onClose} title="Waitlist"
+        subtitle=${itemLabel(kind, item)} />
+      <div className="p-5 space-y-4 overflow-y-auto">
+        ${queue.length === 0
+          ? html`<p className="text-sm text-stone-500">Nobody is waiting yet. Join to be first in line when it’s returned.</p>`
+          : html`
+            <ol className="space-y-1.5">
+              ${queue.map((w, i) => html`
+                <li key=${w.id} className="flex items-center gap-3 text-sm">
+                  <span className=${`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${i === 0 ? 'bg-amber-100 text-amber-700' : 'bg-stone-100 text-stone-500'}`}>${i + 1}</span>
+                  <span className="flex-1 text-stone-800">${(ctx.empById(w.employeeId) || {}).name || 'Unknown'}</span>
+                  <span className="text-xs text-stone-400">${fmt(w.joinedAt)}</span>
+                  <button onClick=${() => ctx.mutate('waitLeave', { id: w.id })} title="Remove from waitlist"
+                    className="p-1 text-stone-300 hover:text-rose-600 hover:bg-rose-50 rounded"><${Icon} name="X" size=${14} /></button>
+                </li>`)}
+            </ol>`}
+        <${Field} label="Add to Waitlist">
+          <${EmployeePicker} employees=${ctx.employees} value=${employeeId} onChange=${setEmployeeId} />
+        </_>
+        <${ModalButtons} onCancel=${onClose} onConfirm=${join} disabled=${!employeeId} loading=${loading} label="Join Waitlist" grad=${`${c.gradFrom} ${c.gradTo}`} />
+      </div>
+    </_>`;
+}
+
+// ─── Library ──────────────────────────────────────────────────────────────────
+// Horizontal chip row that shows a fade + arrow while more chips are off-screen.
+function ChipRow({ children }) {
+  const ref = useRef(null);
+  const [edge, setEdge] = useState({ left: false, right: true });
+  const update = () => {
+    const el = ref.current;
+    if (!el) return;
+    setEdge({ left: el.scrollLeft > 4, right: el.scrollLeft + el.clientWidth < el.scrollWidth - 4 });
+  };
+  useEffect(() => { update(); }, [children]);
+  const nudge = (dir) => ref.current && ref.current.scrollBy({ left: dir * 160, behavior: 'smooth' });
+  return html`
+    <div className="relative -mx-4">
+      <div ref=${ref} onScroll=${update} className="flex gap-2 overflow-x-auto no-scrollbar px-4 py-0.5 scroll-px-4">
+        ${children}
+        <span className="shrink-0 w-6" />
+      </div>
+      ${edge.left && html`
+        <button onClick=${() => nudge(-1)} aria-label="Scroll genres left"
+          className="absolute left-0 top-0 bottom-0 w-14 flex items-center justify-start pl-2 bg-gradient-to-r from-stone-50 via-stone-50/90 to-transparent">
+          <span className="w-8 h-8 rounded-full bg-white border border-stone-200 shadow-sm flex items-center justify-center text-stone-600"><${Icon} name="ChevronLeft" size=${16} /></span>
+        </button>`}
+      ${edge.right && html`
+        <button onClick=${() => nudge(1)} aria-label="More genres"
+          className="absolute right-0 top-0 bottom-0 w-16 flex items-center justify-end pr-2 bg-gradient-to-l from-stone-50 via-stone-50/90 to-transparent">
+          <span className="w-8 h-8 rounded-full bg-white border border-stone-200 shadow-sm flex items-center justify-center text-stone-600"><${Icon} name="ChevronRight" size=${16} /></span>
+        </button>`}
+    </div>`;
+}
+
+function Library({ ctx }) {
+  const { books, activeFor } = ctx;
+  const [q, setQ] = useState('');
+  const [genre, setGenre] = useState('');
+  const [lang, setLang] = useState('');
+  const [avail, setAvail] = useState('all');
+  const genres = useMemo(() => [...new Set(books.map((b) => b.genre).filter(Boolean))].sort(), [books]);
+  const langs = useMemo(() => [...new Set(books.map((b) => b.language).filter(Boolean))].sort(), [books]);
+  const counts = {
+    available: books.filter((b) => !activeFor('book', b.id)).length,
+    out: books.filter((b) => activeFor('book', b.id)).length,
+    overdue: books.filter((b) => isOverdue(activeFor('book', b.id))).length,
+  };
+  const shown = books.filter((b) => {
+    const s = q.trim().toLowerCase();
+    if (s && !`${b.title} ${b.author} ${b.genre}`.toLowerCase().includes(s)) return false;
+    if (genre && b.genre !== genre) return false;
+    if (lang && b.language !== lang) return false;
+    const out = !!activeFor('book', b.id);
+    if (avail === 'available' && out) return false;
+    if (avail === 'out' && !out) return false;
+    return true;
+  });
+  const chip = (active) => `shrink-0 h-9 px-3.5 rounded-full text-sm font-medium whitespace-nowrap border transition-colors ${
+    active ? 'bg-stone-900 border-stone-900 text-white' : 'bg-white border-stone-200 text-stone-600 hover:border-stone-400'}`;
+
+  return html`
+    <div className="space-y-5">
+      <div className="grid grid-cols-3 gap-3">
+        <${StatPill} label="Available" value=${counts.available} color="emerald" />
+        <${StatPill} label="On Loan" value=${counts.out} color="indigo" />
+        <${StatPill} label="Overdue" value=${counts.overdue} color="rose" />
+      </div>
+      <div className="space-y-3">
+        <div className="flex gap-2">
+          <div className="relative flex-1 min-w-0">
+            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-400 pointer-events-none"><${Icon} name="Search" size=${16} /></span>
+            <input type="search" value=${q} onChange=${(e) => setQ(e.target.value)} placeholder="Search books…"
+              className="w-full h-11 pl-9 pr-3 border border-stone-300 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-amber-500" />
+          </div>
+          <${Select} value=${avail} onChange=${(e) => setAvail(e.target.value)} className="w-[132px] shrink-0">
+            <option value="all">Filter</option>
+            <option value="available">Available</option>
+            <option value="out">On Loan</option>
+          </_>
+        </div>
+        <${ChipRow}>
+          <button className=${chip(!genre && !lang)} onClick=${() => { setGenre(''); setLang(''); }}>All Genres</button>
+          ${genres.map((g) => html`<button key=${g} className=${chip(genre === g)} onClick=${() => setGenre(genre === g ? '' : g)}>${g}</button>`)}
+          ${langs.length > 1 && langs.map((l) => html`<button key=${'l' + l} className=${chip(lang === l)} onClick=${() => setLang(lang === l ? '' : l)}>${l}</button>`)}
+        </_>
+      </div>
+      ${shown.length === 0
+        ? html`<div className="text-center py-16 text-stone-400"><${Icon} name="BookOpen" size=${40} className="mx-auto mb-3 opacity-30" /><p>No books match.</p></div>`
+        : html`<div className="grid grid-cols-2 gap-4">
+            ${shown.map((b) => html`<${BookCard} key=${b.id} book=${b} ctx=${ctx} />`)}
+          </div>`}
+      <p className="text-center text-xs text-stone-400">${books.length} books</p>
+    </div>`;
+}
+
+function BookCard({ book, ctx }) {
+  const active = ctx.activeFor('book', book.id);
+  const emp = active ? ctx.empById(active.employeeId) : null;
+  const overdue = isOverdue(active);
+  const queue = ctx.queueFor('book', book.id);
+  return html`
+    <div className="bg-white rounded-2xl border border-stone-200 shadow-sm overflow-hidden flex flex-col transition-shadow hover:shadow-md">
+      <button onClick=${() => ctx.openBook(book)} className="relative block w-full aspect-[2/3] bg-stone-100 overflow-hidden group" title="Details">
+        <${Cover} book=${book} className="w-full h-full transition-transform group-hover:scale-[1.03]" />
+        <span className="absolute top-2 left-2">
+          ${active
+            ? html`<${LoanBadge} loan=${active} kind="book" />`
+            : html`<${Badge} tone="green" icon="Check">Available</_>`}
+        </span>
+        ${queue.length > 0 && html`<span className="absolute top-2 right-2 bg-white/90 text-amber-700 text-[10px] font-semibold px-1.5 py-0.5 rounded-full flex items-center gap-0.5"><${Icon} name="Hourglass" size=${10} />${queue.length}</span>`}
+      </button>
+      <div className="p-3 flex-1 flex flex-col">
+        <button onClick=${() => ctx.openBook(book)} className="text-left">
+          <div className="font-semibold text-stone-800 text-sm leading-snug line-clamp-2">${book.title}</div>
+          <div className="text-xs text-stone-500 mt-0.5 truncate">${book.author}</div>
+        </button>
+        ${active && html`
+          <div className="text-xs mt-2 text-stone-500 space-y-0.5">
+            <div className="truncate">With <span className="text-stone-800 font-medium">${emp ? emp.name : 'Unknown'}</span></div>
+            <div className=${overdue ? 'text-rose-700 font-medium' : ''}>${overdue ? `Overdue · was due ${fmt(active.dueDate)}` : `Due ${fmt(active.dueDate)}`}</div>
+          </div>`}
+        <div className="mt-auto pt-3">
+          ${active
+            ? html`<button onClick=${() => ctx.doReturn('book', active)} disabled=${ctx.busy}
+                className="w-full bg-stone-900 hover:bg-stone-800 text-white py-2 rounded-lg font-medium text-sm flex items-center justify-center gap-1.5 disabled:opacity-60">
+                <${Icon} name="Check" size=${14} /> Return</button>`
+            : html`<button onClick=${() => ctx.openCheckout('book', book)}
+                className="w-full bg-amber-600 hover:bg-amber-700 text-white py-2 rounded-lg font-medium text-sm">
+                Issue</button>`}
+        </div>
+      </div>
+    </div>`;
+}
+
+function BookModal({ ctx, bookId, onClose }) {
+  const book = ctx.db.books.find((b) => b.id === bookId);
+  if (!book) return null;
+  const active = ctx.activeFor('book', book.id);
+  const emp = active ? ctx.empById(active.employeeId) : null;
+  const overdue = isOverdue(active);
+  const queue = ctx.queueFor('book', book.id);
+  const past = live(ctx.db.bookLoans).filter((l) => l.itemId === book.id && l.returnedAt)
+    .sort((a, b) => (a.outAt < b.outAt ? 1 : -1));
+  return html`
+    <${Modal} onClose=${onClose} wide>
+      <div className="overflow-y-auto">
+        <div className="relative bg-stone-50 border-b border-stone-200 p-5 flex gap-4 text-stone-900">
+          <button onClick=${onClose} className="absolute top-3 right-3 p-1.5 text-stone-400 hover:text-stone-700 hover:bg-stone-200 rounded-lg" aria-label="Close"><${Icon} name="X" size=${20} /></button>
+          <div className="w-28 shrink-0 aspect-[2/3] rounded-lg overflow-hidden shadow-md bg-stone-200">
+            <${Cover} book=${book} className="w-full h-full" />
+          </div>
+          <div className="min-w-0 pr-8 flex flex-col">
+            <div className="text-xl font-bold leading-tight">${book.title}</div>
+            <div className="text-sm text-stone-500 mt-1">${book.author}</div>
+            <div className="flex flex-wrap gap-1.5 mt-3">
+              ${book.genre && html`<span className="text-[11px] px-2 py-0.5 rounded-full bg-white border border-stone-200 text-stone-600">${book.genre}</span>`}
+              ${book.language && html`<span className="text-[11px] px-2 py-0.5 rounded-full bg-white border border-stone-200 text-stone-600">${book.language}</span>`}
+            </div>
+            ${book.blurb && html`<p className="text-sm mt-3 text-stone-600 leading-relaxed hidden">${book.blurb}</p>`}
+          </div>
+        </div>
+        <div className="p-5 space-y-5">
+          ${book.blurb && html`<p className="text-sm text-stone-600 leading-relaxed">${book.blurb}</p>`}
+          <div className="rounded-xl border border-stone-200 p-4">
+            ${active
+              ? html`
+                <div className="flex items-center justify-between gap-2 flex-wrap">
+                  <${LoanBadge} loan=${active} kind="book" />
+                  <div className="flex gap-4">
+                    <${LinkBtn} icon="CalendarPlus" onClick=${() => ctx.openExtend('book', active)}>Extend</_>
+                    ${overdue && html`<${LinkBtn} icon="Bell" tone="rose" onClick=${() => ctx.openRemind('book', active)}>Remind</_>`}
+                  </div>
+                </div>
+                <div className="text-sm mt-3 space-y-1">
+                  <div><span className="text-stone-500">With:</span> <b className="text-stone-800 font-medium">${emp ? emp.name : 'Unknown'}</b></div>
+                  <div><span className="text-stone-500">Since:</span> ${fmtFull(active.outAt)} · <span className="text-stone-500">Due:</span> <span className=${overdue ? 'text-rose-700 font-medium' : ''}>${fmtFull(active.dueDate)}</span></div>
+                  ${active.note && html`<div className="text-xs text-stone-400 italic">"${active.note}"</div>`}
+                </div>
+                <div className="flex gap-2 mt-4">
+                  <button onClick=${() => { ctx.doReturn('book', active); }} disabled=${ctx.busy}
+                    className="flex-1 bg-stone-900 hover:bg-stone-800 text-white py-2.5 rounded-lg font-medium text-sm flex items-center justify-center gap-2 disabled:opacity-60">
+                    <${Icon} name="Check" size=${15} /> Return Book</button>
+                  <button onClick=${() => ctx.openWaitlist('book', book)}
+                    className="flex-1 border border-amber-300 text-amber-800 hover:bg-amber-50 py-2.5 rounded-lg font-medium text-sm flex items-center justify-center gap-2">
+                    <${Icon} name="ListOrdered" size=${15} /> Waitlist${queue.length ? ` (${queue.length})` : ''}</button>
+                </div>`
+              : html`
+                <div className="flex items-center justify-between gap-2">
+                  <${Badge} tone="green" icon="Check">Available</_>
+                  ${queue.length > 0 && html`<span className="text-xs text-amber-700">Reserved for ${(ctx.empById(queue[0].employeeId) || {}).name}</span>`}
+                </div>
+                <button onClick=${() => ctx.openCheckout('book', book)}
+                  className="mt-4 w-full bg-amber-600 hover:bg-amber-700 text-white py-2.5 rounded-lg font-medium text-sm">
+                  Issue This Book</button>`}
+          </div>
+          <div>
+            <h4 className="text-sm font-semibold text-stone-800 mb-2">Reading History <span className="text-stone-400 font-normal">(${past.length})</span></h4>
+            ${past.length === 0
+              ? html`<p className="text-sm text-stone-400">Nobody has read this one yet. Be the first!</p>`
+              : html`<div className="space-y-1.5">
+                  ${past.slice(0, 8).map((l) => html`
+                    <div key=${l.id} className="flex justify-between text-sm">
+                      <span className="text-stone-700">${(ctx.empById(l.employeeId) || {}).name || 'Unknown'}</span>
+                      <span className="text-xs text-stone-400">${fmtFull(l.outAt)} · ${daysBetween(l.outAt, l.returnedAt)}d</span>
+                    </div>`)}
+                </div>`}
+          </div>
+        </div>
+      </div>
+    </_>`;
+}
+
+// ─── My Items ─────────────────────────────────────────────────────────────────
+// ─── History ──────────────────────────────────────────────────────────────────
+function HistoryView({ ctx, admin }) {
+  const { db } = ctx;
+  const [type, setType] = useState('all');
+  const [itemF, setItemF] = useState('');
+  const [empF, setEmpF] = useState('');
+  const [status, setStatus] = useState('all');
+  const [limit, setLimit] = useState(60);
+
+  const rows = useMemo(() => {
+    const all = [];
+    if (type !== 'book') live(db.laptopLoans).forEach((l) => all.push({ kind: 'laptop', loan: l }));
+    if (type !== 'laptop') live(db.bookLoans).forEach((l) => all.push({ kind: 'book', loan: l }));
+    return all
+      .filter(({ loan }) => !itemF || loan.itemId === itemF)
+      .filter(({ loan }) => !empF || loan.employeeId === empF)
+      .filter(({ loan }) => status === 'all' || (status === 'active' && !loan.returnedAt) ||
+        (status === 'overdue' && isOverdue(loan)) || (status === 'returned' && loan.returnedAt))
+      .sort((a, b) => new Date(b.loan.outAt) - new Date(a.loan.outAt));
+  }, [db, type, itemF, empF, status]);
+
+  const itemOptions = type === 'laptop' ? ctx.laptops.map((l) => [l.id, `${l.emoji} ${l.name}`])
+    : type === 'book' ? ctx.books.map((b) => [b.id, b.title]) : [];
+
+  const exportCsv = () => {
+    const head = ['Type', 'Item', 'Employee', 'Out', 'Due', 'Returned', 'Days', 'Status', 'Purpose / Note'];
+    const lines = rows.map(({ kind, loan }) => {
+      const item = ctx.itemById(kind, loan.itemId);
+      const emp = ctx.empById(loan.employeeId);
+      return [kind === 'laptop' ? 'Laptop' : 'Book', itemName(kind, item), emp ? emp.name : '', dateOf(loan.outAt), loan.dueDate,
+        dateOf(loan.returnedAt), daysBetween(loan.outAt, loan.returnedAt || new Date().toISOString()),
+        loan.returnedAt ? 'Returned' : isOverdue(loan) ? 'Overdue' : 'Out', loan.note || ''];
+    });
+    const csv = [head, ...lines].map((r) => r.map((v) => `"${String(v).replace(/"/g, '""')}"`).join(',')).join('\n');
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob(['﻿' + csv], { type: 'text/csv;charset=utf-8' }));
+    a.download = `tracker-history-${today()}.csv`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  };
+
+  const removeRow = (kind, loan) => {
+    ctx.confirm({
+      title: 'Remove this entry?', body: 'It disappears from the portal but stays in the Google Sheet, marked Void.', confirmLabel: 'Remove',
+      onConfirm: () => ctx.mutate('voidLoan', { kind, loanId: loan.id }, { undo: () => () => ctx.mutate('restoreLoan', { kind, loanId: loan.id }) }),
+    });
+  };
+
+  const total = live(db.laptopLoans).length + live(db.bookLoans).length;
+  if (total === 0)
+    return html`<div className="text-center py-20 text-stone-400"><${Icon} name="History" size=${40} className="mx-auto mb-3 opacity-30" /><p>No history yet. Check out a laptop or issue a book to begin.</p></div>`;
+
+
+  return html`
+    <div className="space-y-4">
+      <div className="grid grid-cols-2 gap-2">
+        <${Select} value=${type} onChange=${(e) => { setType(e.target.value); setItemF(''); }}>
+          <option value="all">All Types</option><option value="laptop">Laptops</option><option value="book">Books</option>
+        </_>
+        <${Select} value=${itemF} onChange=${(e) => setItemF(e.target.value)} disabled=${type === 'all'}>
+          <option value="">${type === 'laptop' ? 'All Laptops' : type === 'book' ? 'All Books' : 'All Items'}</option>
+          ${itemOptions.map(([id, label]) => html`<option key=${id} value=${id}>${label}</option>`)}
+        </_>
+        <${Select} value=${empF} onChange=${(e) => setEmpF(e.target.value)}>
+          <option value="">All Employees</option>
+          ${ctx.allEmployees.map((e) => html`<option key=${e.id} value=${e.id}>${e.name}${e.active === false ? ' (left)' : ''}</option>`)}
+        </_>
+        <${Select} value=${status} onChange=${(e) => setStatus(e.target.value)}>
+          <option value="all">Any Status</option><option value="active">Still Out</option><option value="overdue">Overdue</option><option value="returned">Returned</option>
+        </_>
+      </div>
+      <div className="flex items-center justify-between text-xs text-stone-500">
+        <span>${rows.length} record${rows.length === 1 ? '' : 's'}</span>
+        ${admin && html`<button onClick=${exportCsv} className="flex items-center gap-1 font-medium text-amber-700 hover:text-amber-800"><${Icon} name="Download" size=${13} /> Export CSV</button>`}
+      </div>
+      <div className="bg-white rounded-2xl border border-stone-200 overflow-hidden shadow-sm">
+        ${rows.length === 0
+          ? html`<div className="text-center py-10 text-stone-400 text-sm">No matching records.</div>`
+          : rows.slice(0, limit).map(({ kind, loan }, i) => {
+            const item = ctx.itemById(kind, loan.itemId);
+            const emp = ctx.empById(loan.employeeId);
+            const returned = !!loan.returnedAt;
+            const od = isOverdue(loan);
+            const duration = daysBetween(loan.outAt, returned ? loan.returnedAt : new Date().toISOString());
+            const col = kind === 'laptop' ? colorOf(item && item.color) : BOOK_COLOR;
+            return html`
+              <div key=${loan.id} className=${`group flex items-start gap-3 p-4 ${i !== Math.min(rows.length, limit) - 1 ? 'border-b border-stone-100' : ''}`}>
+                ${kind === 'book' && item
+                  ? html`<div className="w-10 h-10 rounded-lg overflow-hidden shrink-0 bg-amber-50"><${Cover} book=${item} className="w-full h-full" small /></div>`
+                  : html`<div className=${`${col.light} w-10 h-10 rounded-lg flex items-center justify-center text-lg shrink-0`}>${item ? item.emoji : '💻'}</div>`}
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-baseline justify-between gap-2 flex-wrap">
+                    <div className="min-w-0">
+                      <span className=${`font-medium ${col.textDark}`}>${itemName(kind, item)}</span>
+                      <span className="text-stone-500 text-sm"> · ${emp ? emp.name : 'Unknown'}</span>
+                    </div>
+                    <span className=${`text-xs px-2 py-0.5 rounded-full font-medium shrink-0 ${returned ? 'bg-stone-100 text-stone-600' : od ? 'bg-rose-100 text-rose-700' : 'bg-amber-100 text-amber-700'}`}>
+                      ${returned ? `${duration}d` : od ? 'Overdue' : 'Active'}
+                    </span>
+                  </div>
+                  <div className="text-xs text-stone-400 mt-0.5">
+                    ${fmtFull(loan.outAt)} → ${returned ? fmtFull(loan.returnedAt) : html`still out <span className=${od ? 'text-rose-600' : ''}>(due ${fmt(loan.dueDate)})</span>`}
+                  </div>
+                  ${loan.note && html`<div className="text-xs text-stone-400 italic mt-1">"${loan.note}"</div>`}
+                  ${(admin || !returned) && html`
+                  <div className="flex gap-4 mt-1.5">
+                    ${admin && html`<${LinkBtn} icon="Pencil" onClick=${() => ctx.setModal({ type: 'editLoan', kind, loan })}>Edit</_>`}
+                    ${!returned && html`<${LinkBtn} icon="Bell" onClick=${() => ctx.openRemind(kind, loan)}>Remind</_>`}
+                    ${admin && html`<${LinkBtn} icon="Trash2" onClick=${() => removeRow(kind, loan)}>Remove</_>`}
+                  </div>`}
+                </div>
+              </div>`;
+          })}
+      </div>
+      ${rows.length > limit && html`
+        <button onClick=${() => setLimit(limit + 100)} className="w-full py-2.5 text-sm font-medium text-amber-700 bg-white border border-stone-200 rounded-xl hover:bg-amber-50">
+          Show more (${rows.length - limit} older)
+        </button>`}
+    </div>`;
+}
+
+function EditLoanModal({ ctx, kind, loan, onClose }) {
+  const item = ctx.itemById(kind, loan.itemId);
+  const [f, setF] = useState({
+    employeeId: loan.employeeId, outDate: dateOf(loan.outAt), dueDate: loan.dueDate,
+    returnedDate: dateOf(loan.returnedAt), note: loan.note || '',
+  });
+  const [loading, setLoading] = useState(false);
+  const set = (k) => (e) => setF({ ...f, [k]: e.target.value });
+  const save = async () => {
+    setLoading(true);
+    const res = await ctx.mutate('editLoan', { kind, loanId: loan.id, ...f });
+    setLoading(false);
+    if (res) onClose();
+  };
+  return html`
+    <${Modal} onClose=${onClose}>
+      <${ModalHeader} grad="from-stone-700 to-stone-800" onClose=${onClose} title="Edit Entry" subtitle=${itemLabel(kind, item)} />
+      <div className="p-5 space-y-4 overflow-y-auto">
+        <${Field} label="Team Member"><${EmployeePicker} employees=${ctx.allEmployees} value=${f.employeeId} onChange=${(id) => setF({ ...f, employeeId: id })} /></_>
+        <div className="grid grid-cols-2 gap-3">
+          <${Field} label=${kind === 'laptop' ? 'Checked out' : 'Issued'}><input type="date" value=${f.outDate} onChange=${set('outDate')} className=${inputCls} /></_>
+          <${Field} label="Due"><input type="date" value=${f.dueDate} onChange=${set('dueDate')} className=${inputCls} /></_>
+        </div>
+        <${Field} label="Returned On" hint="(leave empty if still out)">
+          <div className="flex gap-2">
+            <input type="date" value=${f.returnedDate} onChange=${set('returnedDate')} className=${inputCls} />
+            ${f.returnedDate && html`<button onClick=${() => setF({ ...f, returnedDate: '' })} className="px-3 text-xs text-stone-500 hover:text-stone-800 shrink-0">Clear</button>`}
+          </div>
+        </_>
+        <${Field} label=${kind === 'laptop' ? 'Purpose' : 'Note'}><input type="text" value=${f.note} onChange=${set('note')} className=${inputCls} /></_>
+        <${ModalButtons} onCancel=${onClose} onConfirm=${save} disabled=${!f.employeeId || !f.outDate || !f.dueDate} loading=${loading} label="Save Changes" grad="from-stone-700 to-stone-800" />
+      </div>
+    </_>`;
+}
+
+// ─── Dashboard ────────────────────────────────────────────────────────────────
+function Dashboard({ ctx }) {
+  const [chartsReady, setChartsReady] = useState(!!window.Recharts && !!BarChart);
+  const [chartsError, setChartsError] = useState('');
+  useEffect(() => {
+    if (!chartsReady) loadCharts().then(() => setChartsReady(true), (e) => setChartsError(e.message));
+  }, []);
+  const [view, setView] = useState(() => store.get('mll_dash') || 'laptop');
+  const setV = (v) => { setView(v); store.set('mll_dash', v); };
+  return html`
+    <div className="space-y-6">
+      <div className="inline-flex p-1 bg-white border border-stone-200 rounded-xl shadow-sm">
+        ${[['laptop', 'Laptops', 'Laptop'], ['book', 'Books', 'BookOpen']].map(([v, l, ic]) => html`
+          <button key=${v} onClick=${() => setV(v)}
+            className=${`px-4 py-1.5 rounded-lg text-sm font-medium flex items-center gap-1.5 transition-colors ${view === v ? 'bg-stone-900 text-white' : 'text-stone-500 hover:text-stone-800'}`}>
+            <${Icon} name=${ic} size=${14} /> ${l}
+          </button>`)}
+      </div>
+      ${!chartsReady
+        ? html`<div className="space-y-4 animate-pulse">
+            ${chartsError && html`<div className="text-sm text-rose-600">${chartsError}. <button className="underline" onClick=${() => { setChartsError(''); loadCharts().then(() => setChartsReady(true), (e) => setChartsError(e.message)); }}>Try Again</button></div>`}
+            <div className="grid grid-cols-2 gap-3"><div className="h-24 rounded-xl bg-white border border-stone-200" /><div className="h-24 rounded-xl bg-white border border-stone-200" /></div>
+            <div className="h-64 rounded-2xl bg-white border border-stone-200" />
+          </div>`
+        : view === 'laptop' ? html`<${LaptopStats} ctx=${ctx} />` : html`<${BookStats} ctx=${ctx} />`}
+    </div>`;
+}
+
+function useStats(ctx, kind) {
+  const { db } = ctx;
+  return useMemo(() => {
+    const loans = live(db[kindTable(kind)]);
+    const items = (kind === 'laptop' ? db.laptops : db.books).filter((x) => x.active !== false);
+    const completed = loans.filter((c) => c.returnedAt);
+    const avgDuration = completed.length
+      ? (completed.reduce((s, c) => s + daysBetween(c.outAt, c.returnedAt), 0) / completed.length).toFixed(1) : '0';
+    const active = loans.filter((c) => !c.returnedAt).length;
+    const byItem = items.map((it, i) => ({
+      id: it.id, name: kind === 'laptop' ? it.name : it.title, emoji: it.emoji || '📖', item: it,
+      color: kind === 'laptop' ? colorOf(it.color).hex : CHART_COLORS[i % CHART_COLORS.length],
+      count: loans.filter((c) => c.itemId === it.id).length,
+    }));
+    const byEmployee = db.employees
+      .map((e) => ({ name: e.name, count: loans.filter((c) => c.employeeId === e.id).length }))
+      .filter((e) => e.count > 0)
+      .sort((a, b) => b.count - a.count);
+    const last7 = Array.from({ length: 7 }, (_, i) => {
+      const ds = addDays(today(), -(6 - i));
+      return { day: toDate(ds).toLocaleDateString('en-IN', { weekday: 'short' }), count: loans.filter((c) => dateOf(c.outAt) === ds).length };
+    });
+    const genres = {};
+    if (kind === 'book') loans.forEach((l) => {
+      const b = db.books.find((x) => x.id === l.itemId);
+      const g = (b && b.genre) || 'Other';
+      genres[g] = (genres[g] || 0) + 1;
+    });
+    return {
+      loans, items, total: loans.length, active, avgDuration, byItem, byEmployee, last7,
+      byGenre: Object.entries(genres).map(([name, count], i) => ({ name, count, color: CHART_COLORS[i % CHART_COLORS.length] })).sort((a, b) => b.count - a.count),
+      mostPopular: [...byItem].sort((a, b) => b.count - a.count)[0],
+      topUser: byEmployee[0],
+      people: new Set(loans.map((l) => l.employeeId)).size,
+    };
+  }, [db, kind]);
+}
+
+function LaptopStats({ ctx }) {
+  const s = useStats(ctx, 'laptop');
+  if (!s.total)
+    return html`<div className="text-center py-20 text-stone-400"><${Icon} name="ChartColumn" size=${40} className="mx-auto mb-3 opacity-30" /><p>No data yet. Stats appear after the first checkout.</p></div>`;
+  return html`
+    <div className="space-y-6">
+      <div className="grid grid-cols-2 gap-3">
+        <${KpiCard} label="Total Checkouts" value=${s.total} icon="📊" />
+        <${KpiCard} label="Currently Out" value=${`${s.active}/${s.items.length}`} icon="💻" />
+        <${KpiCard} label="Avg. Duration" value=${`${s.avgDuration}d`} icon="⏱️" />
+        <${KpiCard} label="Utilisation" value=${`${Math.round((s.active / Math.max(1, s.items.length)) * 100)}%`} icon="🔥" />
+      </div>
+      <div className="grid gap-4">
+        <${ChartCard} title="Checkouts by Laptop" sub="Which river flows the most">
+          <${ResponsiveContainer} width="100%" height=${210}>
+            <${BarChart} data=${s.byItem}>
+              <${CartesianGrid} strokeDasharray="3 3" stroke="#f5f5f4" />
+              <${XAxis} dataKey="name" tick=${{ fontSize: 11 }} />
+              <${YAxis} tick=${{ fontSize: 11 }} allowDecimals=${false} />
+              <${Tooltip} cursor=${{ fill: '#fef3c7', opacity: 0.4 }} />
+              <${Bar} dataKey="count" radius=${[8, 8, 0, 0]}>
+                ${s.byItem.map((e, i) => html`<${Cell} key=${i} fill=${e.color} />`)}
+              </_>
+            </_>
+          </_>
+        </_>
+        <${Last7Card} data=${s.last7} sub="Daily checkout activity" />
+      </div>
+      <div className="grid gap-4">
+        <${HeroCard} grad="from-amber-400 to-orange-500" label="Most Popular Laptop"
+          title=${html`<span className="text-3xl">${s.mostPopular && s.mostPopular.emoji}</span> <span>${s.mostPopular && s.mostPopular.name}</span>`}
+          sub=${`${s.mostPopular ? s.mostPopular.count : 0} checkouts`} />
+        <${HeroCard} grad="from-rose-400 to-pink-500" label="Top User" title=${`⭐ ${s.topUser ? s.topUser.name : '—'}`} sub=${`${s.topUser ? s.topUser.count : 0} checkouts`} />
+      </div>
+      <${Leaderboard} title="Team Leaderboard · Top 10" rows=${s.byEmployee} />
+    </div>`;
+}
+
+function BookStats({ ctx }) {
+  const s = useStats(ctx, 'book');
+  if (!s.total)
+    return html`
+      <div className="text-center py-20 text-stone-400">
+        <${Icon} name="BookOpen" size=${40} className="mx-auto mb-3 opacity-30" />
+        <p>No books borrowed yet. Stats appear after the first one is issued.</p>
+        <button onClick=${() => ctx.setTab('library')} className="mt-4 px-4 py-2 rounded-lg bg-amber-600 hover:bg-amber-700 text-white text-sm font-medium">Browse Books</button>
+      </div>`;
+  const top = [...s.byItem].filter((x) => x.count > 0).sort((a, b) => b.count - a.count).slice(0, 8)
+    .map((x) => ({ ...x, short: x.name.length > 22 ? x.name.slice(0, 21) + '…' : x.name }));
+  return html`
+    <div className="space-y-6">
+      <div className="grid grid-cols-2 gap-3">
+        <${KpiCard} label="Total Loans" value=${s.total} icon="📚" />
+        <${KpiCard} label="On Loan Now" value=${`${s.active}/${s.items.length}`} icon="📖" />
+        <${KpiCard} label="Avg. Days Kept" value=${`${s.avgDuration}d`} icon="⏱️" />
+        <${KpiCard} label="Readers" value=${s.people} icon="🧑‍🤝‍🧑" />
+      </div>
+      <div className="grid gap-4">
+        <${ChartCard} title="Most Borrowed Books" sub="The team’s favourite reads">
+          <${ResponsiveContainer} width="100%" height=${Math.max(160, top.length * 30 + 20)}>
+            <${BarChart} data=${top} layout="vertical" margin=${{ left: 8, right: 16 }}>
+              <${CartesianGrid} strokeDasharray="3 3" stroke="#f5f5f4" horizontal=${false} />
+              <${XAxis} type="number" tick=${{ fontSize: 11 }} allowDecimals=${false} />
+              <${YAxis} type="category" dataKey="short" tick=${{ fontSize: 11 }} width=${130} />
+              <${Tooltip} cursor=${{ fill: '#fef3c7', opacity: 0.4 }} />
+              <${Bar} dataKey="count" radius=${[0, 8, 8, 0]}>
+                ${top.map((e, i) => html`<${Cell} key=${i} fill=${e.color} />`)}
+              </_>
+            </_>
+          </_>
+        </_>
+        <${ChartCard} title="Loans by Genre" sub="What the team likes to read">
+          <${ResponsiveContainer} width="100%" height=${210}>
+            <${BarChart} data=${s.byGenre}>
+              <${CartesianGrid} strokeDasharray="3 3" stroke="#f5f5f4" />
+              <${XAxis} dataKey="name" tick=${{ fontSize: 11 }} interval=${0} />
+              <${YAxis} tick=${{ fontSize: 11 }} allowDecimals=${false} />
+              <${Tooltip} cursor=${{ fill: '#fef3c7', opacity: 0.4 }} />
+              <${Bar} dataKey="count" radius=${[8, 8, 0, 0]}>
+                ${s.byGenre.map((e, i) => html`<${Cell} key=${i} fill=${e.color} />`)}
+              </_>
+            </_>
+          </_>
+        </_>
+      </div>
+      <div className="grid gap-4">
+        <${HeroCard} grad="from-amber-400 to-orange-500" label="Most Popular Book" title=${s.mostPopular ? s.mostPopular.name : '—'} sub=${`${s.mostPopular ? s.mostPopular.count : 0} loans`} />
+        <${HeroCard} grad="from-rose-400 to-pink-500" label="Top Reader" title=${`⭐ ${s.topUser ? s.topUser.name : '—'}`} sub=${`${s.topUser ? s.topUser.count : 0} books`} />
+      </div>
+      <${Leaderboard} title="Readers Leaderboard · Top 10" rows=${s.byEmployee} />
+    </div>`;
+}
+
+function ChartCard({ title, sub, children }) {
+  return html`
+    <div className="bg-white rounded-2xl border border-stone-200 p-5 shadow-sm">
+      <h3 className="font-semibold text-stone-800 mb-1">${title}</h3>
+      <p className="text-xs text-stone-400 mb-4">${sub}</p>
+      ${children}
+    </div>`;
+}
+
+function Last7Card({ data, sub }) {
+  return html`
+    <${ChartCard} title="Last 7 Days" sub=${sub}>
+      <${ResponsiveContainer} width="100%" height=${210}>
+        <${LineChart} data=${data}>
+          <${CartesianGrid} strokeDasharray="3 3" stroke="#f5f5f4" />
+          <${XAxis} dataKey="day" tick=${{ fontSize: 11 }} />
+          <${YAxis} tick=${{ fontSize: 11 }} allowDecimals=${false} />
+          <${Tooltip} />
+          <${Line} type="monotone" dataKey="count" stroke="#f59e0b" strokeWidth=${2.5} dot=${{ fill: '#f59e0b', r: 4 }} />
+        </_>
+      </_>
+    </_>`;
+}
+
+function HeroCard({ label, title, sub }) {
+  return html`
+    <div className="bg-white border border-stone-200 rounded-2xl p-5 shadow-sm">
+      <div className="text-xs uppercase tracking-wide text-stone-400 mb-2">${label}</div>
+      <div className="text-xl font-semibold text-stone-900 mb-1 flex items-center gap-2 leading-tight">${title}</div>
+      <div className="text-sm text-amber-700">${sub}</div>
+    </div>`;
+}
+
+function Leaderboard({ title, rows }) {
+  const max = rows[0] ? rows[0].count : 0;
+  return html`
+    <div className="bg-white rounded-2xl border border-stone-200 p-5 shadow-sm">
+      <h3 className="font-semibold text-stone-800 mb-4">${title}</h3>
+      <div className="space-y-2.5">
+        ${rows.slice(0, 10).map((emp, i) => html`
+          <div key=${emp.name} className="flex items-center gap-3">
+            <div className=${`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold shrink-0 ${
+              i === 0 ? 'bg-amber-100 text-amber-700' : i === 1 ? 'bg-stone-200 text-stone-600' : i === 2 ? 'bg-orange-100 text-orange-700' : 'bg-stone-50 text-stone-400'}`}>${i + 1}</div>
+            <div className="flex-1 text-sm text-stone-800 truncate">${emp.name}</div>
+            <div className="flex items-center gap-2 shrink-0">
+              <div className="w-20 h-2 bg-stone-100 rounded-full overflow-hidden">
+                <div className="h-full bg-amber-500 rounded-full" style=${{ width: `${max > 0 ? (emp.count / max) * 100 : 0}%` }} />
+              </div>
+              <span className="text-sm text-stone-500 w-5 text-right">${emp.count}</span>
+            </div>
+          </div>`)}
+      </div>
+    </div>`;
+}
+
+function KpiCard({ label, value, icon }) {
+  return html`
+    <div className="bg-white rounded-xl border border-stone-200 p-4 shadow-sm">
+      <div className="text-2xl mb-1">${icon}</div>
+      <div className="text-xl font-bold text-stone-800">${value}</div>
+      <div className="text-xs text-stone-400 mt-0.5">${label}</div>
+    </div>`;
+}
+
+// ─── Admin ────────────────────────────────────────────────────────────────────
+function AdminLoginModal({ onClose, onSuccess }) {
+  const [pwd, setPwd] = useState('');
+  const [show, setShow] = useState(false);
+  const [err, setErr] = useState('');
+  const [loading, setLoading] = useState(false);
+  const submit = async () => {
+    if (!pwd || loading) return;
+    setLoading(true);
+    setErr('');
+    try {
+      if (await call('api_adminLogin', pwd)) return onSuccess(pwd);
+      setErr('That password isn’t right.');
+    } catch (e) {
+      setErr(e.message);
+    }
+    setLoading(false);
+  };
+  return html`
+    <${Modal} onClose=${onClose}>
+      <${ModalHeader} onClose=${onClose} title="Admin View" subtitle="Enter the admin password to continue" />
+      <div className="p-5 space-y-4">
+        <div className="relative">
+          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-400 pointer-events-none"><${Icon} name="Lock" size=${16} /></span>
+          <input autoFocus type=${show ? 'text' : 'password'} value=${pwd} autoComplete="current-password"
+            onChange=${(e) => { setPwd(e.target.value); setErr(''); }} onKeyDown=${(e) => e.key === 'Enter' && submit()}
+            placeholder="Password" className=${inputCls + ' pl-9 pr-16 h-11'} />
+          <button onClick=${() => setShow(!show)} className="absolute right-2 top-1/2 -translate-y-1/2 px-2 py-1 text-xs font-medium text-stone-500">${show ? 'Hide' : 'Show'}</button>
+        </div>
+        ${err && html`<p className="text-sm text-rose-600 -mt-2">${err}</p>`}
+        <${ModalButtons} onCancel=${onClose} onConfirm=${submit} disabled=${!pwd} loading=${loading} label="Open Admin" />
+      </div>
+    </_>`;
+}
+
+function AdminLocked({ onOpen }) {
+  return html`
+    <div className="text-center py-20 text-stone-400">
+      <${Icon} name="Lock" size=${36} className="mx-auto mb-3 opacity-40" />
+      <p className="mb-4">The admin view needs the password.</p>
+      <button onClick=${onOpen} className="px-4 py-2.5 bg-amber-600 text-white rounded-lg text-sm font-medium">Enter Password</button>
+    </div>`;
+}
+
+function AdminView({ ctx }) {
+  const [view, setViewRaw] = useState(() => store.get('mll_admin_view') || 'stats');
+  const setView = (v) => { setViewRaw(v); store.set('mll_admin_view', v); window.scrollTo({ top: 0 }); };
+  return html`
+    <div className="space-y-5">
+      <div className="flex items-center justify-between gap-3">
+        <div className="flex items-center gap-2 text-stone-900 font-semibold"><${Icon} name="ShieldCheck" size=${18} className="text-amber-600" /> Admin</div>
+        <button onClick=${ctx.exitAdmin} className="flex items-center gap-1.5 text-sm font-medium text-stone-500 hover:text-stone-800 py-1.5">
+          <${Icon} name="LogOut" size=${15} /> Exit Admin
+        </button>
+      </div>
+      <div className="grid grid-cols-3 p-1 bg-white border border-stone-200 rounded-xl shadow-sm">
+        ${[['stats', 'Stats', 'ChartColumn'], ['history', 'History', 'History'], ['manage', 'Manage', 'Settings']].map(([v, l, ic]) => html`
+          <button key=${v} onClick=${() => setView(v)}
+            className=${`py-2 rounded-lg text-sm font-medium flex items-center justify-center gap-1.5 transition-colors ${view === v ? 'bg-stone-900 text-white' : 'text-stone-500 hover:text-stone-800'}`}>
+            <${Icon} name=${ic} size=${14} /> ${l}
+          </button>`)}
+      </div>
+      <p className="text-[11px] text-stone-400 -mt-3 text-center">You’ll be signed out of Admin after 30 minutes of no activity.</p>
+      ${view === 'stats' && html`<${OverdueCard} ctx=${ctx} /><${Dashboard} ctx=${ctx} /><${MonthlyReport} ctx=${ctx} />`}
+      ${view === 'history' && html`<${HistoryView} ctx=${ctx} admin=${true} />`}
+      ${view === 'manage' && html`<${SettingsView} ctx=${ctx} /><${DataCard} ctx=${ctx} />`}
+    </div>`;
+}
+
+// A. Everything overdue, laptops and books together, with one-tap WhatsApp.
+function OverdueCard({ ctx }) {
+  const rows = ['laptop', 'book']
+    .flatMap((kind) => live(ctx.db[kindTable(kind)]).filter(isOverdue).map((loan) => ({ kind, loan })))
+    .sort((a, b) => (a.loan.dueDate < b.loan.dueDate ? -1 : 1));
+  if (!rows.length)
+    return html`<div className="bg-white rounded-2xl border border-stone-200 p-4 text-sm text-emerald-700 flex items-center gap-2"><${Icon} name="Check" size=${16} /> Nothing is overdue.</div>`;
+  return html`
+    <div className="bg-white rounded-2xl border border-rose-200 p-4 shadow-sm">
+      <h3 className="font-semibold text-rose-800 flex items-center gap-2"><${Icon} name="CircleAlert" size=${16} /> Overdue · ${rows.length}</h3>
+      <p className="text-xs text-stone-400 mt-0.5 mb-2">Tap WhatsApp to send each person a ready-written reminder.</p>
+      <div className="divide-y divide-stone-100">
+        ${rows.map(({ kind, loan }) => {
+          const item = ctx.itemById(kind, loan.itemId);
+          const emp = ctx.empById(loan.employeeId) || { name: 'Unknown' };
+          const links = remindLinks({ kind, item: item || { name: 'Unknown', title: 'Unknown' }, emp, loan, portalUrl: SHORT_URL });
+          return html`
+            <div key=${loan.id} className="flex items-center gap-3 py-2.5">
+              <span className="shrink-0 text-lg">${kind === 'laptop' ? (item ? item.emoji : '💻') : '📖'}</span>
+              <div className="flex-1 min-w-0">
+                <div className="text-sm font-medium text-stone-800 truncate">${emp.name}</div>
+                <div className="text-xs text-stone-500 truncate">${itemName(kind, item)} · <span className="text-rose-700">${daysLate(loan.dueDate)}d late</span></div>
+              </div>
+              <a href=${links.wa} target="_blank" rel="noopener noreferrer"
+                className="shrink-0 h-9 px-3 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-medium flex items-center gap-1.5">
+                <${Icon} name="MessageCircle" size=${14} /> WhatsApp
+              </a>
+            </div>`;
+        })}
+      </div>
+      ${rows.some(({ loan }) => !((ctx.empById(loan.employeeId) || {}).phone)) && html`
+        <p className="text-[11px] text-stone-400 mt-2">People without a number open WhatsApp so you can pick the chat. Add numbers in Manage → Team Members.</p>`}
+    </div>`;
+}
+
+// E. Monthly report as a CSV: most-borrowed books, busiest laptops, late returns.
+function MonthlyReport({ ctx }) {
+  const [month, setMonth] = useState(today().slice(0, 7));
+  const build = () => {
+    const inMonth = (l) => dateOf(l.outAt).slice(0, 7) === month;
+    const now = new Date().toISOString();
+    const nameOf = (id) => (ctx.empById(id) || {}).name || 'Unknown';
+    const count = (loans, keyFn) => {
+      const m = {};
+      loans.forEach((l) => { const k = keyFn(l); m[k] = m[k] || { n: 0, days: 0 }; m[k].n += 1; m[k].days += daysBetween(l.outAt, l.returnedAt || now); });
+      return Object.entries(m).sort((a, b) => b[1].n - a[1].n || b[1].days - a[1].days);
+    };
+    const laps = live(ctx.db.laptopLoans).filter(inMonth);
+    const books = live(ctx.db.bookLoans).filter(inMonth);
+    const late = ['laptop', 'book'].flatMap((kind) => live(ctx.db[kindTable(kind)]).map((l) => ({ kind, l })))
+      .filter(({ l }) => l.dueDate && l.dueDate.slice(0, 7) === month && (l.returnedAt ? dateOf(l.returnedAt) > l.dueDate : l.dueDate < today()));
+    const lateBy = {};
+    late.forEach(({ l }) => {
+      const k = nameOf(l.employeeId);
+      const back = l.returnedAt ? dateOf(l.returnedAt) : today();
+      const d = Math.round((toDate(back) - toDate(l.dueDate)) / 86400000);
+      lateBy[k] = lateBy[k] || { n: 0, days: 0 }; lateBy[k].n += 1; lateBy[k].days += d;
+    });
+    const label = toDate(month + '-01').toLocaleDateString('en-IN', { month: 'long', year: 'numeric' });
+    const rows = [
+      [APP + ' — Monthly Report', label], [],
+      ['Summary'], ['Laptop checkouts', laps.length], ['Books issued', books.length], ['Late returns', late.length], [],
+      ['Most-Borrowed Books', 'Times Issued', 'Days on Loan'],
+      ...count(books, (l) => itemName('book', ctx.itemById('book', l.itemId))).map(([k, v]) => [k, v.n, v.days]), [],
+      ['Busiest Laptops', 'Checkouts', 'Days in Use'],
+      ...count(laps, (l) => itemName('laptop', ctx.itemById('laptop', l.itemId))).map(([k, v]) => [k, v.n, v.days]), [],
+      ['Late Returns (Due This Month)', 'Times Late', 'Total Days Late'],
+      ...Object.entries(lateBy).sort((a, b) => b[1].n - a[1].n || b[1].days - a[1].days).map(([k, v]) => [k, v.n, v.days]),
+    ];
+    const csv = rows.map((r) => r.map((v) => `"${String(v).replace(/"/g, '""')}"`).join(',')).join('\n');
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8' }));
+    a.download = `marketing-library-report-${month}.csv`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  };
+  return html`
+    <${Card} title="Monthly Report" sub="Most-borrowed books, busiest laptops and late returns for one month, as a CSV for Excel or Sheets.">
+      <div className="flex gap-2">
+        <input type="month" value=${month} max=${today().slice(0, 7)} onChange=${(e) => setMonth(e.target.value || today().slice(0, 7))} className=${inputCls + ' flex-1 min-w-0 h-11'} />
+        <button onClick=${build} className="shrink-0 px-4 h-11 bg-stone-900 hover:bg-stone-800 text-white rounded-lg text-sm font-medium flex items-center gap-1.5"><${Icon} name="Download" size=${14} /> Download</button>
+      </div>
+    </_>`;
+}
+
+// C. Back up now, and quick links to the Sheet and the Backups folder.
+function DataCard({ ctx }) {
+  const [links, setLinks] = useState(null);
+  const [status, setStatus] = useState({ kind: 'idle', msg: '' });
+  useEffect(() => { call('api_admin', 'links', ADMIN_KEY.get()).then((j) => setLinks(JSON.parse(j)), () => {}); }, []);
+  const backup = async () => {
+    setStatus({ kind: 'busy', msg: '' });
+    try { setStatus({ kind: 'done', msg: await call('api_admin', 'backup', ADMIN_KEY.get()) }); }
+    catch (e) { setStatus({ kind: 'error', msg: e.message }); }
+  };
+  const linkCls = 'flex-1 h-11 px-3 border border-stone-300 rounded-lg text-sm font-medium text-stone-700 hover:bg-stone-50 flex items-center justify-center gap-1.5';
+  return html`
+    <${Card} title="Data & Backups" sub="A copy of the Sheet is also saved automatically every night (the last 30 are kept).">
+      <button onClick=${backup} disabled=${status.kind === 'busy'}
+        className="w-full h-11 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-sm font-medium flex items-center justify-center gap-2 disabled:opacity-50">
+        <${Icon} name=${status.kind === 'busy' ? 'RefreshCw' : 'Archive'} size=${15} className=${status.kind === 'busy' ? 'animate-spin' : ''} />
+        ${status.kind === 'busy' ? 'Backing Up…' : 'Back Up Now'}
+      </button>
+      ${status.msg && html`<p className=${`text-sm mt-2 ${status.kind === 'error' ? 'text-rose-600' : 'text-emerald-700'}`}>${status.msg}</p>`}
+      <div className="flex gap-2 mt-3">
+        <a href=${links ? links.sheet : '#'} target="_blank" rel="noopener noreferrer" className=${linkCls + (links ? '' : ' opacity-40 pointer-events-none')}><${Icon} name="ExternalLink" size=${14} /> Google Sheet</a>
+        <a href=${links ? links.backups : '#'} target="_blank" rel="noopener noreferrer" className=${linkCls + (links ? '' : ' opacity-40 pointer-events-none')}><${Icon} name="ExternalLink" size=${14} /> Backups</a>
+      </div>
+    </_>`;
+}
+
+// ─── Settings ─────────────────────────────────────────────────────────────────
+function Card({ title, count, sub, children, right }) {
+  return html`
+    <div className="bg-white rounded-2xl border border-stone-200 p-5 shadow-sm">
+      <div className="flex items-start justify-between gap-3">
+        <div>
+          <h3 className="font-semibold text-stone-800 mb-0.5">${title}${count != null && html` <span className="text-stone-400 font-normal text-sm">(${count})</span>`}</h3>
+          <p className="text-xs text-stone-400 mb-4">${sub}</p>
+        </div>
+        ${right}
+      </div>
+      ${children}
+    </div>`;
+}
+
+function SettingsView({ ctx }) {
+  return html`
+    <div className="space-y-6">
+      <${TeamSettings} ctx=${ctx} />
+      <${LaptopSettings} ctx=${ctx} />
+      <${BookSettings} ctx=${ctx} />
+      <${GeneralSettings} ctx=${ctx} />
+      <${ImportCard} ctx=${ctx} />
+      <div className="bg-white border border-stone-200 rounded-2xl p-4">
+        <p className="font-semibold text-stone-800 mb-1">✅ Powered by Google Sheets</p>
+        <p className="text-sm text-stone-500">
+          All data lives in your Google Sheet, one readable tab per list. The portal syncs every 10 seconds,
+          each change is saved on its own (no overwrites), every change is logged in the Audit tab, and the Sheet is backed up to Drive every night.
+        </p>
+        ${!window.IS_GAS && html`<button onClick=${() => window.MockServer.reset()} className="mt-3 text-xs text-stone-500 underline">Local preview: reset demo data</button>`}
+      </div>
+    </div>`;
+}
+
+function TeamSettings({ ctx }) {
+  const [newName, setNewName] = useState('');
+  const [editing, setEditing] = useState(null);
+  const [search, setSearch] = useState('');
+  const filtered = useMemo(() => {
+    const q = search.trim().toLowerCase();
+    return q ? ctx.employees.filter((e) => e.name.toLowerCase().includes(q)) : ctx.employees;
+  }, [ctx.employees, search]);
+  const add = async () => {
+    const name = newName.trim();
+    if (!name) return;
+    if (await ctx.mutate('employeeAdd', { name })) setNewName('');
+  };
+  const save = async () => {
+    if (!editing.name.trim()) return setEditing(null);
+    if (await ctx.mutate('employeeUpdate', editing)) setEditing(null);
+  };
+  const remove = (e) => {
+    ctx.confirm({
+      title: `Remove ${e.name}?`, body: 'They leave the team list. Their history is kept.', confirmLabel: 'Remove',
+      onConfirm: () => ctx.mutate('employeeRemove', { id: e.id }, { undo: () => () => ctx.mutate('employeeAdd', { name: e.name }) }),
+    });
+  };
+  const small = 'px-2 py-1 border border-amber-300 rounded text-sm min-w-0';
+  return html`
+    <${Card} title="Team Members" count=${ctx.employees.length} sub="Changes sync to Google Sheets instantly. Add a WhatsApp number to make reminders one tap.">
+      <div className="flex gap-2 mb-3">
+        <input type="text" value=${newName} onChange=${(e) => setNewName(e.target.value)} onKeyDown=${(e) => e.key === 'Enter' && add()}
+          placeholder="Add a teammate's name…" className="flex-1 min-w-0 px-3 py-2 border border-stone-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-amber-500" />
+        <button onClick=${add} disabled=${ctx.busy} className="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-sm font-medium flex items-center gap-1 disabled:opacity-60"><${Icon} name="Plus" size=${15} /> Add</button>
+      </div>
+      <div className="relative mb-3">
+        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-400 pointer-events-none"><${Icon} name="Search" size=${13} /></span>
+        <input type="text" value=${search} onChange=${(e) => setSearch(e.target.value)} placeholder="Search list…"
+          className="w-full pl-9 pr-3 py-2 border border-stone-200 rounded-lg text-sm bg-stone-50 focus:outline-none focus:ring-2 focus:ring-amber-500" />
+      </div>
+      <div className="space-y-0.5 max-h-96 overflow-y-auto">
+        ${filtered.length === 0
+          ? html`<div className="text-center py-6 text-sm text-stone-400">No matches</div>`
+          : filtered.map((e) => editing && editing.id === e.id
+            ? html`
+              <div key=${e.id} className="flex flex-wrap items-center gap-2 px-2 py-1.5 rounded-lg bg-amber-50">
+                <input autoFocus type="text" value=${editing.name} onChange=${(ev) => setEditing({ ...editing, name: ev.target.value })} onKeyDown=${(ev) => ev.key === 'Enter' && save()} placeholder="Name" className=${small + ' flex-1'} />
+                <input type="tel" value=${editing.phone} onChange=${(ev) => setEditing({ ...editing, phone: ev.target.value })} onKeyDown=${(ev) => ev.key === 'Enter' && save()} placeholder="WhatsApp number" className=${small + ' w-32'} />
+                <button onClick=${save} className="p-1.5 text-emerald-600 hover:bg-emerald-50 rounded" title="Save"><${Icon} name="Check" size=${15} /></button>
+                <button onClick=${() => setEditing(null)} className="p-1.5 text-stone-400 hover:bg-stone-100 rounded" title="Cancel"><${Icon} name="X" size=${15} /></button>
+              </div>`
+            : html`
+              <div key=${e.id} className="flex items-center gap-2 px-2 py-1.5 rounded-lg hover:bg-stone-50">
+                <span className="flex-1 text-sm text-stone-800 truncate">${e.name}</span>
+                ${e.phone && html`<span title=${e.phone} className="text-stone-300"><${Icon} name="MessageCircle" size=${12} /></span>`}
+                <button onClick=${() => setEditing({ id: e.id, name: e.name, email: e.email || '', phone: e.phone || '' })} className="p-1.5 text-stone-300 hover:text-stone-600 hover:bg-stone-100 rounded" title="Edit"><${Icon} name="Pencil" size=${13} /></button>
+                <button onClick=${() => remove(e)} className="p-1.5 text-stone-300 hover:text-rose-600 hover:bg-rose-50 rounded" title="Remove"><${Icon} name="Trash2" size=${13} /></button>
+              </div>`)}
+      </div>
+    </_>`;
+}
+
+function LaptopRow({ l, ctx }) {
+  const [name, setName] = useState(l.name);
+  const [tagline, setTagline] = useState(l.tagline || '');
+  useEffect(() => { setName(l.name); setTagline(l.tagline || ''); }, [l.name, l.tagline]);
+  const c = colorOf(l.color);
+  // Save on blur/Enter rather than every keystroke.
+  const commit = () => {
+    if (name.trim() === l.name && tagline.trim() === (l.tagline || '')) return;
+    if (!name.trim()) return setName(l.name);
+    ctx.mutate('laptopUpdate', { id: l.id, name, tagline });
+  };
+  const archive = () => {
+    ctx.confirm({
+      title: `Archive ${l.name}?`, body: 'It disappears from the board. Its history is kept.', confirmLabel: 'Archive',
+      onConfirm: () => ctx.mutate('laptopArchive', { id: l.id }),
+    });
+  };
+  const key = (e) => e.key === 'Enter' && e.target.blur();
+  return html`
+    <div className=${`flex items-center gap-3 p-2.5 rounded-xl ${c.light}`}>
+      <span className="text-xl">${l.emoji}</span>
+      <input type="text" value=${name} onChange=${(e) => setName(e.target.value)} onBlur=${commit} onKeyDown=${key}
+        className="flex-1 min-w-0 px-2 py-1 bg-white border border-stone-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-amber-400" />
+      <input type="text" value=${tagline} onChange=${(e) => setTagline(e.target.value)} onBlur=${commit} onKeyDown=${key} placeholder="Tagline"
+        className="hidden w-44 px-2 py-1 bg-white/70 border border-stone-200 rounded-lg text-xs text-stone-500 focus:outline-none focus:ring-2 focus:ring-amber-400" />
+      <select value=${l.color} onChange=${(e) => ctx.mutate('laptopUpdate', { id: l.id, color: e.target.value })}
+        className="px-1.5 py-1 bg-white border border-stone-200 rounded-lg text-xs" title="Card colour">
+        ${Object.keys(COLOR).map((k) => html`<option key=${k} value=${k}>${k}</option>`)}
+      </select>
+      <button onClick=${() => ctx.mutate('laptopUpdate', { id: l.id, repair: l.repair ? '' : 'Under Repair' })}
+        className=${`p-1.5 rounded ${l.repair ? 'text-amber-700 bg-white' : 'text-stone-400 hover:text-stone-700 hover:bg-white'}`}
+        title=${l.repair ? 'Back in service' : 'Mark Under Repair'} aria-label=${l.repair ? 'Mark back in service' : 'Mark under repair'}><${Icon} name="Wrench" size=${14} /></button>
+      <button onClick=${archive} className="p-1.5 text-stone-400 hover:text-rose-600 hover:bg-white rounded" title="Archive"><${Icon} name="Archive" size=${14} /></button>
+    </div>
+    ${l.repair && html`<p className="text-xs text-amber-700 -mt-1 pl-3">Under repair: nobody can check it out. Tap the spanner again when it’s back.</p>`}`;
+}
+
+function LaptopSettings({ ctx }) {
+  const [adding, setAdding] = useState(null);
+  const add = async () => {
+    if (!adding.name.trim()) return;
+    if (await ctx.mutate('laptopAdd', adding)) setAdding(null);
+  };
+  return html`
+    <${Card} title="Laptops" count=${ctx.laptops.length} sub="Rename to match your physical devices. The spanner marks a laptop Under Repair."
+      right=${!adding && html`<button onClick=${() => setAdding({ name: '', emoji: '💻', tagline: '', color: 'sky' })} className="text-xs font-medium text-amber-700 flex items-center gap-1 shrink-0"><${Icon} name="Plus" size=${13} /> Add Laptop</button>`}>
+      <div className="space-y-2">
+        ${ctx.laptops.map((l) => html`<${LaptopRow} key=${l.id} l=${l} ctx=${ctx} />`)}
+        ${adding && html`
+          <div className="flex flex-wrap items-center gap-2 p-2.5 rounded-xl border border-dashed border-amber-300">
+            <input value=${adding.emoji} onChange=${(e) => setAdding({ ...adding, emoji: e.target.value })} className="w-12 px-2 py-1 border border-stone-200 rounded-lg text-center" title="Emoji" />
+            <input autoFocus value=${adding.name} onChange=${(e) => setAdding({ ...adding, name: e.target.value })} onKeyDown=${(e) => e.key === 'Enter' && add()} placeholder="Name (e.g. Brahmaputra)" className="flex-1 min-w-[120px] px-2 py-1 border border-stone-200 rounded-lg text-sm" />
+            <input value=${adding.tagline} onChange=${(e) => setAdding({ ...adding, tagline: e.target.value })} placeholder="Tagline" className="flex-1 min-w-[120px] px-2 py-1 border border-stone-200 rounded-lg text-sm" />
+            <select value=${adding.color} onChange=${(e) => setAdding({ ...adding, color: e.target.value })} className="px-1.5 py-1 border border-stone-200 rounded-lg text-xs">
+              ${Object.keys(COLOR).map((k) => html`<option key=${k} value=${k}>${k}</option>`)}
+            </select>
+            <button onClick=${add} className="px-3 py-1.5 bg-amber-600 text-white rounded-lg text-xs font-medium">Add</button>
+            <button onClick=${() => setAdding(null)} className="px-2 py-1.5 text-stone-500 text-xs">Cancel</button>
+          </div>`}
+      </div>
+    </_>`;
+}
+
+function BookSettings({ ctx }) {
+  const [search, setSearch] = useState('');
+  const shown = ctx.books.filter((b) => !search.trim() || `${b.title} ${b.author}`.toLowerCase().includes(search.trim().toLowerCase()));
+  return html`
+    <${Card} title="Books" count=${ctx.books.length} sub="Add new arrivals, fix details or change a cover."
+      right=${html`<button onClick=${() => ctx.setModal({ type: 'bookEdit', book: null })} className="text-xs font-medium text-amber-700 flex items-center gap-1 shrink-0"><${Icon} name="Plus" size=${13} /> Add Book</button>`}>
+      <div className="relative mb-3">
+        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-400 pointer-events-none"><${Icon} name="Search" size=${13} /></span>
+        <input type="text" value=${search} onChange=${(e) => setSearch(e.target.value)} placeholder="Search books…"
+          className="w-full pl-9 pr-3 py-2 border border-stone-200 rounded-lg text-sm bg-stone-50 focus:outline-none focus:ring-2 focus:ring-amber-500" />
+      </div>
+      <div className="space-y-0.5 max-h-96 overflow-y-auto">
+        ${shown.map((b) => html`
+          <div key=${b.id} className="flex items-center gap-3 px-2 py-1.5 rounded-lg hover:bg-stone-50">
+            <div className="w-7 h-10 rounded overflow-hidden shrink-0"><${Cover} book=${b} className="w-full h-full" small /></div>
+            <div className="flex-1 min-w-0">
+              <div className="text-sm text-stone-800 truncate">${b.title}</div>
+              <div className="text-xs text-stone-400 truncate">${b.author}${b.genre ? ` · ${b.genre}` : ''}</div>
+            </div>
+            <button onClick=${() => ctx.setModal({ type: 'bookEdit', book: b })} className="p-1.5 text-stone-300 hover:text-stone-600 hover:bg-stone-100 rounded" title="Edit"><${Icon} name="Pencil" size=${13} /></button>
+            <button onClick=${() => ctx.confirm({ title: `Archive “${b.title}”?`, body: 'It leaves the library. Its history is kept.', confirmLabel: 'Archive', onConfirm: () => ctx.mutate('bookArchive', { id: b.id }) })}
+              className="p-1.5 text-stone-300 hover:text-rose-600 hover:bg-rose-50 rounded" title="Archive"><${Icon} name="Archive" size=${13} /></button>
+          </div>`)}
+      </div>
+    </_>`;
+}
+
+function BookEditModal({ ctx, book, onClose }) {
+  const [f, setF] = useState(book
+    ? { title: book.title, author: book.author, genre: book.genre, language: book.language, cover: book.cover, blurb: book.blurb }
+    : { title: '', author: '', genre: '', language: 'English', cover: '', blurb: '' });
+  const [loading, setLoading] = useState(false);
+  const set = (k) => (e) => setF({ ...f, [k]: e.target.value });
+  const genres = [...new Set(ctx.db.books.map((b) => b.genre).filter(Boolean))].sort();
+  const save = async () => {
+    setLoading(true);
+    const res = await ctx.mutate(book ? 'bookUpdate' : 'bookAdd', book ? { id: book.id, ...f } : f);
+    setLoading(false);
+    if (res) onClose();
+  };
+  return html`
+    <${Modal} onClose=${onClose}>
+      <${ModalHeader} grad="from-amber-500 to-orange-500" onClose=${onClose} title=${book ? 'Edit book' : 'Add a book'} subtitle=${book ? book.title : 'New arrival for the library'} />
+      <div className="p-5 space-y-4 overflow-y-auto">
+        <div className="flex gap-4">
+          <div className="w-20 shrink-0 aspect-[2/3] rounded-lg overflow-hidden shadow"><${Cover} key=${f.cover} book=${{ ...f, title: f.title || 'Title', author: f.author }} className="w-full h-full" small /></div>
+          <div className="flex-1 space-y-3">
+            <${Field} label="Title"><input autoFocus value=${f.title} onChange=${set('title')} className=${inputCls} /></_>
+            <${Field} label="Author"><input value=${f.author} onChange=${set('author')} className=${inputCls} /></_>
+          </div>
+        </div>
+        <div className="grid grid-cols-2 gap-3">
+          <${Field} label="Genre">
+            <input list="genre-list" value=${f.genre} onChange=${set('genre')} className=${inputCls} />
+            <datalist id="genre-list">${genres.map((g) => html`<option key=${g} value=${g} />`)}</datalist>
+          </_>
+          <${Field} label="Language"><input list="lang-list" value=${f.language} onChange=${set('language')} className=${inputCls} />
+            <datalist id="lang-list"><option value="English" /><option value="Hindi" /><option value="Marathi" /></datalist></_>
+        </div>
+        <${Field} label="Cover Image URL" hint="(optional)">
+          <input value=${f.cover} onChange=${set('cover')} placeholder="https:\/\/… (leave empty for an auto cover)" className=${inputCls} />
+          <p className="text-[11px] text-stone-400 mt-1">Tip: search the title on openlibrary.org, right-click the cover → Copy image address.</p>
+        </_>
+        <${Field} label="Short Description" hint="(optional)"><textarea value=${f.blurb} onChange=${set('blurb')} rows=${2} className=${inputCls} /></_>
+        <${ModalButtons} onCancel=${onClose} onConfirm=${save} disabled=${!f.title.trim()} loading=${loading} label=${book ? 'Save' : 'Add to library'} grad="from-amber-500 to-orange-500" />
+      </div>
+    </_>`;
+}
+
+function GeneralSettings({ ctx }) {
+  const s = ctx.settings;
+  const [f, setF] = useState({ laptopLoanDays: s.laptopLoanDays || '7', bookLoanDays: s.bookLoanDays || '14' });
+  const dirty = Object.keys(f).some((k) => String(f[k]) !== String(s[k] || ''));
+  const set = (k) => (e) => setF({ ...f, [k]: e.target.value });
+  return html`
+    <${Card} title="Loan Periods" sub="Default return dates for new checkouts. People can still pick a different date.">
+      <div className="grid grid-cols-2 gap-4">
+        <${Field} label="Laptops (Days)"><input type="number" inputMode="numeric" min="1" max="365" value=${f.laptopLoanDays} onChange=${set('laptopLoanDays')} className=${inputCls} /></_>
+        <${Field} label="Books (Days)"><input type="number" inputMode="numeric" min="1" max="365" value=${f.bookLoanDays} onChange=${set('bookLoanDays')} className=${inputCls} /></_>
+      </div>
+      <div className="flex justify-end mt-4">
+        <button disabled=${!dirty || ctx.busy} onClick=${() => ctx.mutate('settingsUpdate', f)}
+          className="px-4 py-2.5 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-sm font-medium disabled:opacity-40">Save Settings</button>
+      </div>
+    </_>`;
+}
+
+function ImportCard({ ctx }) {
+  const [status, setStatus] = useState({ kind: 'idle', msg: '' });
+  const run = async () => {
+    setStatus({ kind: 'busy', msg: '' });
+    try {
+      const res = await fetch(OLD_TRACKER_URL + '?t=' + Date.now());
+      if (!res.ok) throw new Error('The old tracker didn’t respond (' + res.status + ').');
+      const out = JSON.parse(await call('api_importOld', await res.text(), ADMIN_KEY.get()));
+      ctx.applyState(out.state);
+      setStatus({ kind: 'done', msg: out.message });
+    } catch (e) {
+      setStatus({ kind: 'error', msg: e.message || 'Import failed' });
+    }
+  };
+  return html`
+    <${Card} title="Old Laptop Tracker" sub="Copy checkouts made on the old CodeSandbox link into this tracker. Safe to repeat; nothing is duplicated.">
+      <div className="flex items-center gap-3 flex-wrap">
+        <button onClick=${run} disabled=${status.kind === 'busy'}
+          className="px-4 py-2 bg-stone-900 hover:bg-stone-800 text-white rounded-lg text-sm font-medium flex items-center gap-2 disabled:opacity-50">
+          <${Icon} name=${status.kind === 'busy' ? 'RefreshCw' : 'Download'} size=${14} className=${status.kind === 'busy' ? 'animate-spin' : ''} />
+          ${status.kind === 'busy' ? 'Importing…' : 'Import from Old Tracker'}
+        </button>
+        ${status.msg && html`<span className=${`text-sm ${status.kind === 'error' ? 'text-rose-600' : 'text-emerald-700'}`}>${status.msg}</span>`}
+      </div>
+    </_>`;
+}
+
+function ConfirmModal({ title, body, confirmLabel, onConfirm, onClose }) {
+  return html`
+    <${Modal} onClose=${onClose}>
+      <div className="p-5 space-y-2">
+        <div className="text-lg font-semibold text-stone-900">${title}</div>
+        <p className="text-sm text-stone-500">${body}</p>
+      </div>
+      <div className="flex gap-2 px-5 pb-5">
+        <button onClick=${onClose} className="flex-1 px-4 py-3 border border-stone-300 rounded-lg font-medium text-stone-700 hover:bg-stone-50 text-sm">Cancel</button>
+        <button onClick=${() => { onClose(); onConfirm(); }} className="flex-1 px-4 py-3 rounded-lg font-medium text-white text-sm bg-rose-600 hover:bg-rose-700">${confirmLabel}</button>
+      </div>
+    </_>`;
+}
+
+// ─── Share ────────────────────────────────────────────────────────────────────
+function ShareModal({ url, onClose }) {
+  const [copied, setCopied] = useState(false);
+  const copy = async () => {
+    if (await copyText(url)) { setCopied(true); setTimeout(() => setCopied(false), 2000); }
+  };
+  const wa = `https:\/\/wa.me/?text=${encodeURIComponent('📚 ' + APP + ' — book a laptop or borrow a book here 👇\n' + url)}`;
+  return html`
+    <${Modal} onClose=${onClose}>
+      <${ModalHeader} grad="from-amber-500 to-orange-500" onClose=${onClose} title=${html`<span>Share with the Team</span>`} subtitle="Syncs across everyone in real time" />
+      <div className="p-5 space-y-3">
+        <div className="bg-stone-50 border border-stone-200 rounded-xl p-3 text-xs text-stone-500 break-all font-mono leading-relaxed select-all">${url}</div>
+        <button onClick=${copy} className="w-full px-4 py-2.5 bg-stone-900 hover:bg-stone-800 text-white rounded-xl font-medium flex items-center justify-center gap-2 transition-colors">
+          ${copied ? html`<${Icon} name="Check" size=${16} /> Copied!` : 'Copy Link'}
+        </button>
+        <a href=${wa} target="_blank" rel="noopener noreferrer"
+          className="w-full px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-medium flex items-center justify-center gap-2 transition-colors">
+          <${Icon} name="MessageCircle" size=${16} /> Share on WhatsApp
+        </a>
+      </div>
+    </_>`;
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(html`<${App} />`);
+})();
+    </script>
+  </body>
+</html>
